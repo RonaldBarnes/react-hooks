@@ -1,0 +1,76 @@
+
+#root {
+	box-sizing: border-box;
+	font-size: 1.25rem;
+	}
+
+.container {
+	display: grid;
+	grid-template-columns: 15% 1fr;
+	grid-template-rows: 100px 1fr 40px;
+	grid-template-areas:
+		"header		header"
+		"sidebar	hooks"
+		"footer		footer" 
+	}
+
+.App-header {
+	grid-area: header;
+	display: flex;
+	flex-direction: row;
+	gap: 2rem;
+	justify-content: center;
+	align-items: center;
+	}
+
+.sidebar {
+	background-color: hsla(150, 50%, 50%, 0.25);
+	grid-area: sidebar;
+	}
+.sidebar > ul > li {
+	list-style-type: circle;
+	font-size: 1.5rem;
+	line-height: 2rem;
+	}
+
+
+.hooks, .counter {
+	grid-area: hooks;
+	margin: auto;
+	}
+.hooks > p {
+	padding: 0 1rem 0 1rem;
+	}
+
+
+footer {
+	grid-area: footer;
+	text-align: center;
+	align-self: center;
+	}
+
+.jsx {
+	font-family: mono;
+	background-color: #222222;
+	color: #ddd;
+	padding: 0.25rem 1rem 1rem 1rem;
+	margin: 0 auto 0 0 ;
+	border-radius: 15px;
+	margin: 10px;
+	box-shadow: 10px 10px 10px grey;
+	overflow: scroll;
+	}
+.counter {
+	text-align: center;
+	margin-top: 1rem;
+	}
+
+button {
+	padding: 0.5rem 3rem 0.5rem 3rem;
+	font-size: 1.5rem;
+	}
+
+code {
+	padding: 0 0.25rem 0 0.25rem;
+	}
+

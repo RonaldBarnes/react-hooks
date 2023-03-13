@@ -11,7 +11,7 @@
 	grid-template-areas:
 		"header		header"
 		"sidebar	hooks"
-		"footer		footer" 
+		"sidebar	footer" 
 	}
 
 .App-header {
@@ -37,8 +37,6 @@
 .hooks, .counter {
 	grid-area: hooks;
 	margin: auto;
-	}
-.hooks > p {
 	padding: 0 1rem 0 1rem;
 	}
 

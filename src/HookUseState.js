@@ -24,6 +24,9 @@ export default function HookUseState()
 			<h2>
 				HookUseState
 			</h2>
+			<h3>
+				Q: Why does my state update only once?
+			</h3>
 			<p>
 				To ensure an action happens twice on an update to the state,
 				use the functional version of
@@ -58,6 +61,9 @@ const updateCountOnce = (value) => {
 			As we can see, the counter only updates once, despite two calls to
 			<code>setCount()</code>.
 		</p>
+			<h3>
+				A: Update state with a function call
+			</h3>
 		<p>
 			If the calls to <code>setCount()</code> are done as a function, then
 			both are invoked:

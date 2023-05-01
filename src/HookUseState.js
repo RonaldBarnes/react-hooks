@@ -1,95 +1,74 @@
+import React, { useEffect } from 'react';
+import { Link, Outlet } from "react-router-dom";
+/*
+import { useParams, Link, Outlet } from "react-router-dom";
+import HookUseStateMultiUpdates from './HookUseStateMultiUpdate';
+import HookUseStateObjects from './HookUseStateObjects';
 
-import React, { useState } from 'react';
 import './Hooks.css';
+*/
 
 
 export default function HookUseState()
 	{
-	const [count, setCount] = useState(0);
+	console.log("%cHookUseState", "color: yellow");
+/*
+	// This can use useParams to determine which child component to render,
+	// or it can be handled in the Routes section of App.js
+	const childPage = useParams();
+	let output = childPage.objects
+		? <HookUseStateObjects />
+		: childPage.multi
+			? <HookUseStateMultiUpdates />
+			: false
+*/
 
-	const updateCountOnce = (value) => {
-		console.log(`count = %c${count}`, "font-color=red;");
-		setCount(count + value)	// update once
-		setCount(count + value)	// update again (this fails)
-		}
+	useEffect( () => {
+		window.scrollTo({top:0, behavior:"smooth"});
+		},[])
 
-	const updateCountTwice = (value) => {
-		console.log(`count = %c${count}`, "font-color=red;");
-		setCount(count => count + value)
-		setCount(count => count + value)
-		}
+//	output = output ? output :
+	const output =
+		<>
+			<p>
+				Kyle at Web Dev Simplified has a course on React hooks.
+				We begin with the easy stuff,
+				<a href="https://www.youtube.com/watch?v=O6P86uwfdR0"
+					target="ReactHooks"
+					>
+					<code>useState</code>
+				</a>.
+			</p>
+			<p>
+				We'll look at performing multiple updates
+				to a variable in a <code>setState()</code> so they don't cancel
+				each other out in the {" "}
+				<Link to="multi-updates">first example</Link>.
+			</p>
+		<p>
+			In the {" "}
+			<Link to="objects">second example</Link>, we'll examine updating
+			multiple variables (scalar and an object) with
+			<code>setState()</code> in an incorrect manner, then with a better
+			manner, and finally in the best method.
+		</p></>
 
-	return(
+	return (
 		<div className="hooks">
-			<h2>
-				HookUseState
-			</h2>
-			<h3>
-				Q: Why does my state update only once?
-			</h3>
-			<p>
-				To ensure an action happens twice on an update to the state,
-				use the functional version of
-				<code>setState()</code>.
-			</p>
-			<p>
-				For example, we want our counter increment to happen <b>twice</b>
-				&nbsp; per click, even though we pass a value of -1 or 1 to the
-				function <code>updateCountOnce()</code>:
-			</p>
-			<code><pre className="jsx">
-{`
-const updateCountOnce = (value) => {
-    setCount(count + value)    // update once
-    setCount(count + value)    // update again (this fails)
-    }
-...
-<button onClick={() => updateCountOnce(-1)}> -2 </button>
-    {count}
-<button onClick={() => updateCountOnce(+1)}> +2 </button>
-`}
-			</pre></code>
-			<div className="counter">
-				<span style={{ fontSize: '2rem' }}>
-				<button onClick={() => updateCountOnce(-1)}> -2 </button>
-					&nbsp;{count}&nbsp;
-				<button onClick={() => updateCountOnce(1)}> +2 </button>
-				</span>
-			</div>
-
-		<p>
-			As we can see, the counter only updates once, despite two calls to
-			<code>setCount()</code>.
-		</p>
-			<h3>
-				A: Update state with a function call
-			</h3>
-		<p>
-			If the calls to <code>setCount()</code> are done as a function, then
-			both are invoked:
-		</p>
-			<code><pre className="jsx">
-{`
-const updateCountTwice = (value) => {
-    setCount(count => count + value)
-    setCount(count => count + value)
-    }
-...
-<button onClick={() => updateCountTwice(-1)}> -2 </button>
-    {count}
-<button onClick={() => updateCountTwice(+1)}> +2 </button>
-`}
-		</pre></code>
-			<div className="counter">
-				<span style={{ fontSize: '2rem' }}>
-				<button onClick={() => updateCountTwice(-1)}> -2 </button>
-					&nbsp;{count}&nbsp;
-				<button onClick={() => updateCountTwice(1)}> +2 </button>
-				</span>
-			</div>
-			<p>
-				And now the counts are updated by two each click.
-			</p>
+			<h2>Hook useState</h2>
+			<blockquote>
+				<h3>
+					<a href="https://react.dev/reference/react/useState"
+						target="ReactHooks">
+						useState
+					</a>
+				</h3>
+					<code>useState</code> is a React Hook that lets you add a state
+					variable to your component.
+			</blockquote>
+			{output}
+			<Outlet />
 		</div>
-		)
+		);
 	}
+

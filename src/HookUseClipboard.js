@@ -228,7 +228,8 @@ function CopyStats( {
 	if (target != null) target.innerHTML = "";
 
 	console.log(`stats copy  status: "${successCopy}" and msg: "${copiedVal}"`);
-	console.log(`stats paste status: "${successPaste}" and msg: "${pastedVal}" and type: ${pastedDataType}`);
+	console.log(`%cstats paste status: "${successPaste}" and msg: "${pastedVal}" and type: ${pastedDataType}`,
+		"color:green");
 
 	if (successCopy === true)
 		{

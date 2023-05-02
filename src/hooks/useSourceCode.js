@@ -22,10 +22,6 @@ export default function useSourceCode({code, options})
 	// Styles are objects, not strings:
 	const [style, setStyle] = useState(styleName);
 
-console.log(`%cuseSourceCode`, "color:green");
-console.log(code);
-
-
 	useEffect( () => styleFromText(styleName), []);
 
 

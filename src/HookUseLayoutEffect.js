@@ -138,12 +138,12 @@ function WithoutLayoutEffect()
 
 	return (
 		<div style={{display:"grid", gridTemplateRows:"2fr 1fr 2fr"}}>
-			<p>
+			<div>
 				With <code>useEffect</code>, the pop-up should appear very briefly
 				under the button before it gets
 				moved down by ~50px. It's too quick to see though, despite trying
 				to add a timer / delay.
-			</p>
+			</div>
 			<div className="counter">
 				<button
 					ref={button}
@@ -152,17 +152,17 @@ function WithoutLayoutEffect()
 					>
 					Click for pop-up
 				</button>
-				{show && (
-					<div className="counter"
-						// style={{position:"static"}}
-						style={{position:"fixed"}}
-						ref={popup}
-						>
-						This is a pop-up
-					</div>
-					)}
-				</div>
 			</div>
+			{show && (
+			<div className="counter"
+				style={{position:"static"}}
+				// style={{position:"fixed"}}
+				ref={popup}
+				>
+				This is a pop-up
+			</div>
+			)}
+		</div>
 		);	// end return
 	}	// end function WithoutLayoutEffect
 
@@ -205,10 +205,10 @@ function WithLayoutEffect()
 
 	return (
 		<div style={{display:"grid", gridTemplateRows:"2fr 1fr 2fr"}}>
-			<p>
+			<div>
 				With <code>useEffectLayout</code>, the pop-up should appear
 				at its final location under the button without rendering artifacts.
-			</p>
+			</div>
 			<div className="counter">
 				<button
 					ref={button}
@@ -216,19 +216,19 @@ function WithLayoutEffect()
 					>
 					Click for pop-up
 				</button>
-				{/* <div id="xxx">Button position:</div> */}
-				{show && (
-					<div className="counter"
-						// style={{position:"absolute"}}
-						// style={{position:"relative"}}	// way to bottom, right; off screen both axes
-						style={{position:"static"}}		// kind of works, directly below button...
-						// style={{position:"fixed"}}	// works: Xpx below button, fixed when scrolling
-						ref={popup}
-						>
-						This is a pop-up
-					</div>
-					)}
+			</div>
+			{/* <div id="xxx">Button position:</div> */}
+			{show && (
+				<div className="counter"
+					// style={{position:"absolute"}}
+					// style={{position:"relative"}}	// way to bottom, right; off screen both axes
+					style={{position:"static"}}		// kind of works, directly below button...
+					// style={{position:"fixed"}}	// works: Npx below button, fixed when scrolling
+					ref={popup}
+					>
+					This is a pop-up
 				</div>
+				)}
 			</div>
 		);	// end return
 	}	// end function WithLayoutEffect

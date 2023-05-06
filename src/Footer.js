@@ -13,7 +13,7 @@ export default function Footer()
 				href="https://www.flaticon.com/free-icons/hong-kong"
 				title="hong kong icons"
 				target="ReactNotes"
-				>Hong kong icons created by Freepik - Flaticon
+				>Flag icons created by Freepik - Flaticon
 			</a>
 		</footer>
 		);

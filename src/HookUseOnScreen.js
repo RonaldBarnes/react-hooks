@@ -214,9 +214,9 @@ export default function HookUseOnScreen()
 
 			<hr />
 			<h2>Header 1</h2>
-			<pre style={{whiteSpace:"pre"}}><code>
+			<pre style={{whiteSpace:"pre", textAlign:"center"}}><code>
 {\`
-				Scroll down to see second header...
+Scroll down to see second header...
 
 
 
@@ -227,7 +227,7 @@ export default function HookUseOnScreen()
 
 
 
-				Scroll down to see second header...
+Scroll down to see second header...
 
 
 
@@ -238,7 +238,7 @@ export default function HookUseOnScreen()
 
 
 
-				Scroll down to see second header...
+Scroll down to see second header...
 
 
 
@@ -249,7 +249,7 @@ export default function HookUseOnScreen()
 
 
 
-				Scroll down to see second header...
+Scroll down to see second header...
 
 
 

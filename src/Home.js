@@ -1,10 +1,16 @@
 
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export default function Home()
 	{
 	console.log("%cHome", "color: red");
+
+	useEffect( () => {
+		setTimeout( () => {
+			window.scrollTo({top:0, behavior:"smooth"})
+			})
+		});
 
 	return(
 		<div className="hooks">

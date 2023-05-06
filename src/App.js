@@ -221,7 +221,10 @@ const App = function()
 
 						<Route
 							path="/useToggle"
-							element={<HookUseToggle />}
+							element={<HookUseToggle
+								language={language}
+								t={t}
+								/>}
 							/>
 						<Route
 							path="/useTimeout"
@@ -229,7 +232,7 @@ const App = function()
 							/>
 						<Route
 							path="/useDebounce"
-							element={<HookUseDebounce />}
+							element={<HookUseDebounce t={t} />}
 							/>
 						<Route
 							path="/useUpdateEffect"
@@ -277,7 +280,10 @@ const App = function()
 							/>
 						<Route
 							path="/useOnScreen"
-							element={<HookUseOnScreen />}
+							element={<HookUseOnScreen
+								language={language}
+								t={t}
+								/>}
 							/>
 						<Route
 							path="/useMediaQuery"
@@ -285,7 +291,10 @@ const App = function()
 							/>
 						<Route
 							path="/useGeolocation"
-							element={<HookUseGeolocation />}
+							element={<HookUseGeolocation
+								language={language}
+								t={t}
+								/>}
 							/>
 						<Route
 							path="/useStateWithValidation"
@@ -314,11 +323,17 @@ const App = function()
 							/>
 						<Route
 							path="/useClipboard"
-							element={<HookUseClipboard />}
+							element={<HookUseClipboard
+								language={language}
+								t={t}
+								/>}
 							/>
 						<Route
 							path="/useCookies"
-							element={<HookUseCookies />}
+							element={<HookUseCookies
+								language={language}
+								t={t}
+								/>}
 							/>
 						<Route
 							path="/useTranslation"

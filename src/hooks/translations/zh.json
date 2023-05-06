@@ -1,0 +1,16 @@
+[
+	{"hi": [ "dee2 mah3", "芝麻" ]},
+	{"bye": [ "chi3 dee1 geen3", "遲啲見"]},
+	{"nested": [ "value", "is Nested obj"]},
+	{"hungry": [ "toh3 ngo3", "肚餓"]},
+	{"cold": [ "dong", "講呀"]},
+	{"red": [ "hong sik", "紅色"]},
+	{"orange": [ "chan sik", "顏色"]},
+	{"yellow": [ "wong sik", "黃色"]},
+	{"green": [ "loh sik", "綠色"]},
+	{"light green": [ "cheng sik", "" ]},
+	{"blue": [ "lam sik", "藍色" ]},
+	{"purple": [ "gee sik", "紫色"]},
+	{"black": [ "hah sik", "黑色"]},
+	{"white": [ "bah sik", "白色"]}
+]

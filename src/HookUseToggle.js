@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import useToggle from "./hooks/useToggle";
 import useSourceCode from "./hooks/useSourceCode";
 
-export default function HookUseToggle()
+export default function HookUseToggle({language, t})
 	{
 	console.log("%cHookUseToggle", "color: yellow");
 
@@ -31,13 +31,30 @@ export default function HookUseToggle()
 			<p>
 				Use the buttons below to affect this value: {" "}
 				<span style={{fontWeight:"bold", fontSize:"2rem", fontVariantCaps:"small-caps"}}>
-					{value.toString()}
+					{value.toString()} {" "}
+					{language !== "en" && t(value.toString())}
 				</span>
 			</p>
 			<p>
-				<button type="button" onClick={toggleValue} autoFocus>Toggle</button>
-				<button type="button" onClick={() => toggleValue(true)}>True</button>
-				<button type="button" onClick={() => toggleValue(false)}>False</button>
+				<button
+					type="button"
+					onClick={toggleValue}
+					autoFocus
+					>
+					{t("Toggle")}
+				</button>
+				<button
+					type="button"
+					onClick={() => toggleValue(true)}
+					>
+					{t("True")}
+				</button>
+				<button
+					type="button"
+					onClick={() => toggleValue(false)}
+					>
+					{t("False")}
+				</button>
 			</p>
 
 			<p>

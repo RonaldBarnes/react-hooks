@@ -4,14 +4,17 @@ import useOnScreen from "./hooks/useOnScreen";
 import useSourceCode from "./hooks/useSourceCode";
 
 
-export default function HookUseOnScreen()
+export default function HookUseOnScreen({
+		language,
+		t
+		})
 	{
 	console.log("%cHookUseOnScreen", "color: red");
 
 	const header2Ref = useRef();
 
 	const visibleAlmost = useOnScreen( header2Ref, { threshold:"1.0" } );
-	const visible = useOnScreen( header2Ref, { rootMargin:"-200px" } );
+	const visible = useOnScreen( header2Ref, { rootMargin:"-250px" } );
 
 	// Use autoFocus instead:
 	// useEffect( () => document.querySelector("input").focus());
@@ -81,10 +84,13 @@ export default function HookUseOnScreen()
 
 `}
 			</code></pre>
-			<h2 ref={header2Ref}>Header 2 {" "}
-				{ (visible
-					&& "(Fully Visible!)" )
-					|| (visibleAlmost && "(A little more scrolling...)" )
+			<h2 ref={header2Ref}
+					style={{height:"2rem", padding:"1rem", outline:"1px solid red", whiteSpace:"nowrap"}}>
+				
+				{
+					(visible && `Header 2: ${t("Fully Visible")}!`)
+				||
+					(visibleAlmost && `Header 2: ${t("scroll down")} ${t("more")}`)
 				}
 			</h2>
 

@@ -3,7 +3,10 @@ import React, { useEffect, useState} from 'react';
 import useCookies from "./hooks/useCookies";
 
 
-export default function HookUseCookies()
+export default function HookUseCookies({
+    language,
+    t
+    })
 	{
 	console.log("%cHookUseCookies", "color: red");
 
@@ -107,21 +110,21 @@ export default function HookUseCookies()
 							setCookie(cookieName, cookieValue, {"max-age":60});
 							setCookieCounter(getCookieCount());
 							}}>
-							Set Cookie
+							{t("Set")} Cookie
 						</button>
 						{" "}
 						<button onClick={() => {
 							deleteCookie(cookieName);
 							setCookieCounter(getCookieCount());
 							}} >
-							Delete Cookie
+							{t("Delete")} Cookie
 						</button>
 						{" "}
 						<button onClick={() => {
 							updateCookie(cookieName, cookieValue, {...options, "max-age":120});
 							setCookieCounter(getCookieCount());
 							}} >
-							Update Cookie
+							{t("Update")} Cookie
 						</button>
 					</p>
 				</fieldset>

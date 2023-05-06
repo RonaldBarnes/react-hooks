@@ -10,7 +10,7 @@ import useTimeout from "./hooks/useTimeout";
 import useSourceCode from "./hooks/useSourceCode";
 
 
-export default function HookUseDebounce()
+export default function HookUseDebounce({t})
 	{
 	console.log("%cHookUseDebounce", "color: yellow");
 
@@ -102,13 +102,13 @@ export default function HookUseDebounce()
 					type="button"
 					onClick={clear}
 					autoFocus
-					>Stop Timer
+					>{t("Stop")} {t("Timer")}
 				</button>
 				<button
 					type="button"
 					onClick={restart}
 						>
-						Restart Timer
+						{t("Restart")} {t("Timer")}
 				</button>
 			</p>
 			<Code />

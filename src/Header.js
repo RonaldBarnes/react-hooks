@@ -37,7 +37,7 @@ export default function Header(
 		<>
 			<div className="App-header">
 				<div></div>
-				<div>
+				<div style={{textAlign:"center"}}>
 					<img src={logo} className="App-logo" alt="logo" />
 					<h2 style={{display:"inline", verticalAlign:"super"}}>
 						React Hooks {t("Lesson Notes")}

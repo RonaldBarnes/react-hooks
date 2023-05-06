@@ -4,7 +4,10 @@ import useClipboard from "./hooks/useClipboard";
 import useSourceCode from "./hooks/useSourceCode";
 
 
-export default function HookUseClipboard()
+export default function HookUseClipboard({
+		language,
+		t
+		})
 	{
 	console.log("%cHookUseClipboard", "color: red");
 
@@ -162,7 +165,7 @@ To enable pasting images, go to: <code>about:config</code> and set: <br />
 					type="button"
 					onClick={() => copyTextToClipboard(inputVal)}
 					>
-					Copy to clipboard
+					{t("Copy to clipboard")}
 				</button>
 			</p>
 			<p>
@@ -170,7 +173,7 @@ To enable pasting images, go to: <code>about:config</code> and set: <br />
 					type="button"
 					onClick={() => pasteTextFromClipboard()}
 					>
-					Paste clipboard text
+					{t("Paste clipboard")}: {t("text")}
 				</button>
 			</p>
 			<p>
@@ -178,7 +181,7 @@ To enable pasting images, go to: <code>about:config</code> and set: <br />
 					type="button"
 					onClick={() => pasteClipboardPromise()}
 					>
-					Paste anything via "promise"
+					{t("Paste clipboard")}: {t("anything")} via "promise"
 				</button>
 			</p>
 			<p>
@@ -186,7 +189,7 @@ To enable pasting images, go to: <code>about:config</code> and set: <br />
 					type="button"
 					onClick={() => pasteClipboardAsync()}
 					>
-					Paste anything via "async"
+					{t("Paste clipboard")}: {t("anything")} via "async"
 				</button>
 			</p>
 			<p id="clipboardTarget">

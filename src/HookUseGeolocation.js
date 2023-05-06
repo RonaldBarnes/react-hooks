@@ -5,7 +5,10 @@ import useClipboard from "./hooks/useClipboard";
 import useSourceCode from "./hooks/useSourceCode";
 
 
-export default function HookUseGeolocation()
+export default function HookUseGeolocation({
+		language,
+		t
+		})
 	{
 	console.log("%cHookUseGeolocation", "color: red");
 
@@ -88,18 +91,18 @@ cat privkey.pem cert.pem > server.pem
 			</h4>
 			<p>
 				Firefox mobile on Android 13:
-					<ul>
-						<li>Constant updates happen every second, though maxTimeout is 5s</li>
-						<li>altitudeAccuracy is given</li>
-					</ul>
 			</p>
+			<ul>
+				<li>Constant updates happen every second, though maxTimeout is 5s</li>
+				<li>altitudeAccuracy is given</li>
+			</ul>
 			<p>
 				Chrome mobile on Android 13:
-					<ul>
-						<li>Constant updates happen 5 seconds</li>
-						<li>altitudeAccuracy is never supplied</li>
-					</ul>
 			</p>
+			<ul>
+				<li>Constant updates happen 5 seconds</li>
+				<li>altitudeAccuracy is never supplied</li>
+			</ul>
 			<br />
 			<p>
 				It's left as an exercise for the user to generate (LetsEncrypt) and
@@ -129,7 +132,7 @@ cat privkey.pem cert.pem > server.pem
 						copyTextToClipboard(document.querySelector("#geoLocationStats").innerText)
 						}
 						>
-						Copy Location to Clipboard
+						{t("Copy to Clipboard")}
 					</button>
 				</p>
 			<p>

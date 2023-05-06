@@ -1,0 +1,7 @@
+{
+	"hi": ["Hello", "Hello"],
+	"bye": ["Goodbye", "Goodbye"],
+	"nested": { "value": "is Nested obj"},
+	"hungry": ["Hungry", "Hungry"],
+	"cold": ["cold", "Cold"]
+}

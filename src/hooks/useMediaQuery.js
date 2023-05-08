@@ -16,7 +16,7 @@ console.log(`useMediaQuery list.matches: ${list.matches}`);
 			setIsMatch(list.matches);
 		}, [mediaQuery]);
 
-	console.log(`useMediaQuery mediaQuery: "${mediaQuery}`);
+	console.log(`useMediaQuery mediaQuery: "${mediaQuery}"`);
 	console.table(mediaQueryList);
 	useEventListener("change", e => setIsMatch(e.matches), mediaQueryList);
 

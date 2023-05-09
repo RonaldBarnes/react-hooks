@@ -85,7 +85,7 @@ Scroll down to see second header...
 `}
 			</code></pre>
 			<h2 ref={header2Ref}
-					style={{height:"2rem", padding:"1rem", outline:"1px solid red", whiteSpace:"nowrap"}}>
+					style={{height:"2rem", padding:"2rem", outline:"1px solid red", whiteSpace:"nowrap"}}>
 				
 				{
 					(visible && `Header 2: ${t("Fully Visible")}!`)

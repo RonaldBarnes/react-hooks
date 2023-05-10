@@ -63,6 +63,15 @@ export default function Home()
 				I implemented some <code>useParams</code>, but then removed them,
 				as nested <code>Route</code>s did the job perfectly.
 			</p>
+			<hr />
+			<p>
+				I kinda messed up the responsive design. When I made a button to expand / collapse
+				the sidebar, it interfered / conflicted with the media query that determined whether
+				to display it.
+			</p>
+			<p>
+				Got that worked out, and I'm really happy with the result!
+			</p>
 		</div>
 		);
 	}

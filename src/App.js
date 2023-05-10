@@ -79,7 +79,7 @@ import HookUseLongPress from "./HookUseLongPress";
 
 import Home from "./Home";
 import Header from "./Header";
-import Sidebar from "./SideBar";
+import Sidebar from "./Sidebar";
 import Footer from "./Footer";
 
 import useDarkMode from "./hooks/useDarkMode";

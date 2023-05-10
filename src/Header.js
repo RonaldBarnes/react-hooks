@@ -36,14 +36,16 @@ export default function Header(
 	return (
 		<>
 			<div className="App-header">
-				<div></div>
-				<div style={{textAlign:"center"}}>
+				<div>
 					<img src={logo} className="App-logo" alt="logo" />
-					<h2 style={{display:"inline", verticalAlign:"super"}}>
+				</div>
+				<div style={{textAlign:"center"}}>
+					<h2>
 						React Hooks {t("Lesson Notes")}
 					</h2>
 				</div>
 				<div className="header_buttons">
+					<div>
 					{Object.keys(flags).map( (f, idx) => 
 						<img
 							// src={flags[language]}
@@ -55,6 +57,7 @@ export default function Header(
 							key={idx}
 							/>
 						)}
+					</div>
 					<div
 						className="theme_selector"
 						onClick={() => setDarkMode( currMode => !currMode)}

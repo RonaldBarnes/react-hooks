@@ -3,7 +3,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import "./App.css";
+// import "./App.css";
 import "./Hooks.css";
 
 import HookUseState from "./HookUseState";
@@ -79,21 +79,22 @@ import HookUseLongPress from "./HookUseLongPress";
 
 import Home from "./Home";
 import Header from "./Header";
-import SideBar from "./SideBar";
+import Sidebar from "./SideBar";
 import Footer from "./Footer";
 
 import useDarkMode from "./hooks/useDarkMode";
 import useTranslation from "./hooks/useTranslation";
 
+
 document.title = "React Hooks Notes";
 
-	window.scrollTo({top:0, behavior:"smooth"});
 
-
-// class App extends Component {
 const App = function()
-//  render()
 	{
+	setTimeout( () => {
+		window.scrollTo({top:0, behavior:"smooth"});
+		}, 500);
+
 	const DEFAULT_THEME_DARK = false;
 	const [darkMode, setDarkMode, removeTheme] = useDarkMode(DEFAULT_THEME_DARK);
 
@@ -121,7 +122,7 @@ const App = function()
 					flags={flags}
 					/>
 				<BrowserRouter>
-					<SideBar />
+					<Sidebar />
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route

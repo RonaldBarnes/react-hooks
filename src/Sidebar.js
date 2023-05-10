@@ -1,18 +1,148 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { NavLink } from "react-router-dom";
 
 // import './Hooks.css';
 import { useSessionStorage } from "./hooks/useStorage";
+import useMediaQuery from "./hooks/useMediaQuery";
 
 
-export default function SideBar()
+// Figure out initial loading sidebar state (showing / hidden).
+// If "small" screen, it's hidden, if wide screen, it's showing.
+function deriveShowSidebar(smallScreen, sb)
+	{
+	if (sb === null) return false;
+	// const sb = document.querySelector(".sidebar");
+	if (smallScreen)
+		{
+		if (sb.classList.contains("display")) return true;
+		return false
+		}
+	if (sb.classList.contains("nodisplay")) return false;
+	return true;
+	}
+
+
+
+export function SidebarMenu()
+	{
+	// This will indicate when screen changes from "wide" to "small":
+	let smallScreen = useMediaQuery("(max-width: 1000px)");
+
+	// Get the sidebar so we can deal with responsive media-query / click on show/hide:
+	const sb = document.querySelector(".sidebar");
+
+	const showingSidebar = useRef(deriveShowSidebar(smallScreen, sb));
+
+	// Save showing status to state, to trigger re-render of menu after changes,
+	// like when window resizes to "small", sidebar disappears, sidebar-menu should
+	// switch to hamburger menu from close "X":
+	let [showingSidebar2,setShowingSidebar2] = useState(showingSidebar.current);
+
+
+
+	const clickSidebarMenu = (e) =>
+		{
+		e.preventDefault();
+		const sb = document.querySelector(".sidebar");
+
+
+		showingSidebar.current = !showingSidebar.current;
+		console.log("Sidebar.js clickSidebarmenu() NOW showSidebar = :",
+			showingSidebar.current.toString());
+
+		if (showingSidebar.current)
+			{
+			sb.classList.remove("nodisplay");
+			sb.classList.add("display");
+			}
+		else
+			{
+			sb.classList.add("nodisplay");
+			sb.classList.remove("display");
+			}
+		setShowingSidebar2( currval => !currval);
+		}
+
+
+
+	// Add ONE-TIME an event listener on the sidebar-menu for "click":
+	useEffect( () => {
+		// Use a setTimeout so the page can get all elements, else it *can*
+		// return null for sidebar:
+		setTimeout( () => {
+			console.log("Sidebar.js setTimeout addEventListener next:");
+			document.querySelector(".sidebar-menu")
+				.addEventListener("click", (e) => clickSidebarMenu(e))
+			}, 1000);
+
+		return () => {
+			console.log("Sidebar.js useEffect RETURN function remove eventListener...");
+			document.querySelector(".sidebar-menu")
+				.removeEventListener("click", clickSidebarMenu);
+			}
+		}, [])
+
+
+	// Monitor changes in media-query from wide <--> small and
+	// cleanup any applied CSS that may have been forcing showing / hidden:
+	// i.e. if wide and "nodisplay", when becomes narrow, remove "nodisplay",
+	// since it's specified in the CSS - allow CSS to handle it...
+	useEffect( () => {
+		const sb = document.querySelector(".sidebar");
+		// console.log(`useEFFECT: smallScreen (show sidebar?)= ${smallScreen.toString()}`);
+		if (smallScreen)
+			{
+			if (sb.classList.contains("display"))
+				{
+				showingSidebar.current = true;
+				}
+			else
+				{
+				showingSidebar.current = false;
+				// Default for smallScreen is display:none, remove our over-rides:
+				sb.classList.remove("display", "nodisplay");
+				}
+			}
+		else if (sb.classList.contains("nodisplay"))
+			{
+			// Widescreen is true, remove residual class:
+			showingSidebar.current = false;
+			sb.classList.remove("display");
+			}
+		else
+			{
+			showingSidebar.current = true;
+			// Widescreen is true, remove residual class:
+			sb.classList.remove("display");
+			}
+		setShowingSidebar2( currval => !currval);
+		},[showingSidebar.current, smallScreen]);
+
+
+	return (
+		<div className="sidebar-menu">
+			{showingSidebar.current === true
+				? " × "
+				: " ☰ "
+			}
+		</div>
+		);	// end return
+	}	// end SidebarMenu
+
+
+
+
+export default function Sidebar()
 	{
 	const [sortAlpha, setSortAlpha] = useSessionStorage("sortAlpha", false);
 	const [sortDirAsc, setSortDirAsc] = useSessionStorage("sortDirAsc", true);
 
 	return(
-		<nav className="sidebar">
+		<>
+			<SidebarMenu />
+		<nav className="sidebar" id="sidebar">
+
 			<div style={{
 				display:"flex",
 				flexDirection:"row",
@@ -29,7 +159,7 @@ export default function SideBar()
 					>
 				</i> {" "}
 				<i
-					className="fa fa-arrow-up-a-z"
+					className="fa fa-arrow-up-z-a"
 					aria-hidden="true"
 					title="Sort alpha descending"
 					onClick={() => { setSortAlpha(true); setSortDirAsc( () => false) }}
@@ -56,7 +186,7 @@ export default function SideBar()
 				</i> {" "}
 				</div>
 			</div>
-			<hr />
+			<hr style={{width:"100%", marginTop:"12px"}} />
 			<ul>
 				<li>
 					<i className="fa fa-house" aria-hidden="true"></i>{" "}
@@ -140,6 +270,7 @@ export default function SideBar()
 			</ul>
 
 		</nav>
+		</>
 		);
 	}
 

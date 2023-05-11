@@ -1,40 +1,19 @@
-/*
-html {
-	height: 100%;
-	}
-body {
-	min-height: 100%;
-	}
-*/
-
-/*
-@font-face {
-	font-family: 'FontAwesome';
-	src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.eot?v=4.7.0');
-	src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'),
-		 url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'),
-		 url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'),
-		 url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'),
-		 url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
-	font-weight: normal;
-	font-style: normal;
-  }
-*/
 
 #root {
 	box-sizing: border-box;
-	font-size: 1.25rem;
-	/* --box-shadow-color: lightgrey; */
+	font-size: 16px;
 	}
 #root.darkModeTheme {
 	--box-shadow-color: grey;
 	}
-
-
 body, input, textarea, button, select
 	{
-	/* --sidebar-width: minmax(220px, 250px); */
-	--sidebar-width: 250px;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+
+	--header-height: 100px;
+	--sidebar-width: clamp(200px, max-content, 300px);
 	--color: black;
 	--background-color: whitesmoke;
 
@@ -57,9 +36,15 @@ body, input, textarea, button, select
 	box-shadow: var(--box-shadow-color);
 	}
 
+p
+	{
+	font-size: 1.25rem;
+	}
+
 
 button {
 	padding: 0.5rem 3rem 0.5rem 3rem;
+	margin: 0.25rem;
 	border: 3px solid;
 	border-left-color: var(--button-edge-light);
 	border-top-color: var(--button-edge-light);
@@ -97,18 +82,61 @@ input[type="checkbox"]
 	background-color: goldenrod;
 	}
 
+h2
+	{
+	font-size: clamp(1.75rem, 4vw, 3rem);
+	text-align: center;
+	}
+h4
+	{
+	font-size: clamp(1.5rem, 2vw, 2rem);
+	text-align: left;
+	}
+
+
+.container {
+	min-height: 100dvh;
+	display: grid;
+	grid-template-rows: 100px auto 50px;
+
+	/* grid-template-columns: clamp(12vw, 17vw, 22vw) 2fr; */
+	grid-template-columns: auto 2fr;
+	grid-template-areas:
+		"header				header		header"
+		"sidebar			hooks			hooks"
+		"sidebar			footer		footer"
+		;
+	}
+
+/*
+	NOTE: the !important is required to ensure widths take effect,now that
+	widths instead of display:{none|block} are used to show/hide sidebar:
+*/
+.nodisplay
+	{
+	width: 0 !important;
+	/* display: none; */
+	}
+.display
+	{
+/*
+	NOTE: the following line defeats transitions, but ONLY when
+	media-query in effect, i.e. small screen AND sidebar-menu toggles:
+*/
+	/* width: var(--sidebar-width) !important; */
+	width: 250px !important;
+	display: block;
+	}
+
 
 .App-header {
 	position: sticky;
 	top: 0;
 	z-index: 10;
-	font-size: clamp(2.0vw, 3vw, 2.25rem);
 
 	/* Reversed colours on header, and always dark: */
 	color: var(--header-color);
 	background-color: var(--header-bg-color);
-	/* background-color: #333;
-	color: whitesmoke; */
 	box-shadow: 0px 0px 25px 5px var(--box-shadow-color);
 
 	position: sticky;
@@ -117,23 +145,30 @@ input[type="checkbox"]
 
 	grid-area: header;
 	display: grid;
-	grid-template-columns: 250px 4fr 1fr ;
-	grid-template-rows: 100px;
-	/* gap: 2rem; */
+	grid-template-columns: 250px 1fr auto;
+	grid-template-rows: var(--header-height);
 	justify-content: center;
 	align-items: center;
-	/* border-bottom-right-radius: 5px; */
 	overflow: hidden;
-	/* padding: .25rem 0 .25rem 0; */
-/*
-	height: 150px;
-  padding: 20px;
-*/
 	}
-/* .App-header .darkModeTheme {
-	background-color: var(--color);
-	color: var(--background-color);
-	} */
+.App-header * h2
+	{
+	font-size: clamp(2vw, 4vw, 5rem);
+	margin: 0;
+	display: inline;
+	vertical-align: middle;
+	}
+
+.App-logo
+	{
+	animation: App-logo-spin infinite 20s linear;
+	height: 80px;
+	}
+@keyframes App-logo-spin
+	{
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+	}
 
 img .flag
 	{
@@ -147,25 +182,28 @@ img .flag
 	flex-direction: row;
 	justify-content: space-evenly;
 	align-items: center;
+	width: 180px;
+	white-space: nowrap;
+	padding-right: 0.5rem;
 	}
+
 
 .theme_selector {
 	/* Reverse colours for header: */
 	background-color: var(--header-bg-color);
 	color: var(--header-color);
-	/* box-shadow: 0 0 5px var(--box-shadow-color); */
 
-	/* position: absolute;
-	right: clamp(2rem,5rem,8rem); */
 	cursor: pointer;
 	border-radius: 5px;
-	padding: 1rem;
-	/* outline: 1px solid var(--header-color); */
+	padding: 0.5rem;
+
 	z-index:1;
 	opacity:0.85;
 	transition: all 250ms;
 	font-size: 1.2rem;
 	white-space: nowrap;
+	width: 115px;
+	text-align: right;
 	}
 .theme_selector:hover, .theme_selector:focus {
 	/* Un-reversed colour for header child element hover: */
@@ -182,16 +220,39 @@ img .flag
 
 
 
+.sidebar-menu
+	{
+	grid-area: hooks;;
+	width: min-content;
+	height: min-content;
+	/* outline: 1px solid greenyellow; */
+	font-size: 2rem;
+	background-color: var(--sidebar-background-color);
+	line-height: 3rem;
+	z-index: 1;
+	/* border-top-right-radius: 25%; */
+	padding-inline: 1rem;
+	border-bottom-right-radius: .5rem;
+	box-shadow:
+		/*
+		NOTE: this makes the sidebar-menu tab appear to be part of the
+		sidebar: 1st shadow touches sidebar at the <hr /> without gap,
+		2nd shadow gives effect to right side of tab:
+		*/
+		0px 2px 2px 0px var(--box-shadow-color),
+		2px 0px 2px 0px var(--box-shadow-color)
+		;
+	cursor: pointer;
+	}
+
 .sidebar {
 	background-color: var(--sidebar-background-color);
 	grid-area: sidebar;
+	padding-bottom: 1rem;
 	overflow: scroll;
-/*	resize: horizontal;	*/
-
-	position: sticky;
-	/* bottom: 0; */
-	/* top: 100px; */
-
+	/* width: var(--sidebar-width); */
+	width: clamp(15vw, 17vw, 22vw);
+	transition: ease-in-out 300ms width;
 	}
 .sidebar > ul {
 	list-style-type: none;
@@ -199,6 +260,7 @@ img .flag
 	line-height: 2rem;
 	padding-left: 1.5rem;
 	margin: 0;
+	padding: 0 0.5rem;
 	white-space: nowrap;
 	}
 .sidebar > h4 {
@@ -215,31 +277,23 @@ img .flag
 
 
 
-.container {
-	min-height: 100dvh;
-	display: grid;
-
-	grid-template-columns: --var(--sidebar-width) 1fr 1fr;
- /* minmax(220px, 250px) 1fr; */
-	grid-template-columns: 250px 1fr 1fr;
-
-/* grid-template-columns: clamp(200px, 20ch, 250px) 1fr; */
-	grid-template-rows: 100px 1fr 40px;
-	grid-template-areas:
-		"header		header		header"
-		"sidebar	hooks			hooks"
-		"sidebar	footer		footer"
-		;
-	}
-
-
 
 
 .hooks {
 	grid-area: hooks;
 	padding: 0 1rem 0 1rem;
 	overflow: scroll;
+	margin-bottom: 1rem;
+	max-width: 100%;
+	/* transition: width 2s;
+	transition-duration: 500ms;
+	transition-timing-function: ease-in-out;
+	transition-delay: 550ms; */
 	}
+/* .hooks::before
+	{
+	content: "";
+	} */
 
 .counter {
 	margin: auto;
@@ -254,6 +308,7 @@ footer {
 	grid-area: footer;
 	text-align: center;
 	align-self: center;
+	margin-bottom: 1rem;
 	}
 
 .jsx {
@@ -311,34 +366,46 @@ ul > li > a.active {
 	background-color: hsla(150, 50%, 50%, 0.5);
 	}
 
+
+
+
+
+/* ****************************************************** */
 @media (max-width: 1000px) {
-	.container {
-		min-height: 100dvh;
-		max-width: 100vw;
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-template-rows: 100px 1fr 1fr 40px;
-		grid-template-areas:
-			"header"
-			"hooks"
-			"sidebar"
-			"footer"
-			;
+	.App-header
+		{
+		grid-template-columns: min-content 1fr auto;
 		}
-.App-header
-	{
-	justify-content: start;
+	.header_buttons
+		{
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+		align-items: end;
+		width: min-content;
+		}
+	.sidebar, .sidebar .nodisplay
+		{
+		width: 0;
+		/* display: none; */
+		/* transition: ease-in-out 300ms width; */
+		}
+
 	}
-	}
+/*	☰× \9776 &lt; &#9776; &times; &gt;'; */
+/* ****************************************************** */
+
+
+
+
+
+
+
 
 .screenshot {
 	margin: auto;
 	margin-top: 2rem;
-	box-shadow:
-		 0px  0px 20px 1px var(--box-shadow-color)
-		/* , */
-		/* -0px -0px 20px 5px lightgrey */
-		;
+	box-shadow: 0px  0px 20px 1px var(--box-shadow-color);
 	display: block;
 	cursor: no-drop;
 	border-radius: 10px;
@@ -370,7 +437,6 @@ div.todos {
 	border-radius: 5px;
 	align-self: center;
 	justify-self: left;
-	/* place-self: center left; */
 	}
 .todoItemCompleted {
 	color: grey;
@@ -402,16 +468,7 @@ body.darkModeTheme * input[type="checkbox"]
 	background-color: var(--background-color);
 	color: var(--color);
 	}
-/* body.darkModeTheme * textarea,
-body.darkModeTheme * input,
-body.darkModeTheme * button,
-body.darkModeTheme * select
-	{
-	background-color: var(--background-color);
-/* #555; */
-/*
-	color: var(--color);
-	} */
+
 body.darkModeTheme * a {
 	color: orange;
 	}

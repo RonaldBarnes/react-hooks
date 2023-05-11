@@ -75,6 +75,8 @@ import HookUseDebugInfo from "./HookUseDebugInfo";
 import HookUseHover from "./HookUseHover";
 import HookUseLongPress from "./HookUseLongPress";
 
+import HookUseSourceCode from "./HookUseSourceCode";
+
 //import AppTEST from "./test";
 
 import Home from "./Home";
@@ -368,6 +370,10 @@ const App = function()
 						<Route
 							path="/useLongPress"
 							element={<HookUseLongPress />}
+							/>
+						<Route
+							path="/useSourceCode"
+							element={<HookUseSourceCode />}
 							/>
 
 

@@ -283,11 +283,11 @@ export default function Sidebar()
 function CustomHooks({sortAlpha, sortDirAsc})
 	{
 	const hooksList = [
-		{ seq:  1, name: "useLocalStorage", icon: "" },
-		{ seq:  2, name: "useSessionStorage" },
+		{ seq:  1, name: "useLocalStorage", icon: "fa fa-database" },
+		{ seq:  2, name: "useSessionStorage", icon: "fa fa-database" },
 		{ name: "<hr />" },
-		{ seq:  3, name: "useToggle", },
-		{ seq:  4, name: "useTimeout", },
+		{ seq:  3, name: "useToggle", icon: "fa fa-toggle-on", },
+		{ seq:  4, name: "useTimeout", icon: "fa fa-hourglass-half", },
 		{ seq:  5, name: "useDebounce", icon: "fa fa-hourglass-half", },
 		{ seq:  6, name: "useUpdateEffect", icon: "fa fa-spinner" },
 		{ seq:  7, name: "useArray", icon: "fa fa-layer-group fa-list-ol" },
@@ -316,10 +316,11 @@ function CustomHooks({sortAlpha, sortDirAsc})
 		{ seq: 25, name: "useTranslation", icon: "fa fa-language", },
 		{ name: "<hr />" },
 		{ seq: 26, name: "useOnlineStatus", icon: "fa fa-wifi", },
-		{ seq: 27, name: "useRenderCount", icon: "", },
+		{ seq: 27, name: "useRenderCount", icon: "fa fa-list-ol", },
 		{ seq: 28, name: "useDebugInfo", icon: "fa fa-bug-slash" },
-		{ seq: 29, name: "useHover", icon: "", },
-		{ seq: 30, name: "useLongPress", icon: "", },
+		{ seq: 29, name: "useHover", icon: "fa fa-paper-plane fa-overline", },
+		{ seq: 30, name: "useLongPress", icon: "fa fa-hand-point-down", },
+		{ seq: 40, name: "useSourceCode", icon: "fa fa-code", },
 		];
 
 	let displayList = [];

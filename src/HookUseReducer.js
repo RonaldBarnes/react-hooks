@@ -21,7 +21,7 @@ export default function HookUseReducer()
 			<blockquote>
 				<h3>
 					<a href="https://react.dev/reference/react/useReducer"
-						target="new">
+						target="ReactHooks">
 						useReducer
 					</a>
 				</h3>
@@ -29,7 +29,7 @@ export default function HookUseReducer()
 						<code>useReducer</code> is a React Hook that lets you
 						add a {" "}
 						<a href="https://react.dev/learn/extracting-state-logic-into-a-reducer"
-							target="new"
+							target="ReactHooks"
 							>
 							reducer
 						</a> to your component.
@@ -52,13 +52,13 @@ export default function HookUseReducer()
 			<p>
 				I did use Redux during the {" "}
 				<a href="http://bclug.ca:3000/"
-					target="new"
+					target="ReactHooks"
 					>
 					gaming excercises
 				</a>
 				{" "} of the {" "}
 				<a href="https://www.udemy.com/course/the-advanced-web-developer-bootcamp/"
-					target="new"
+					target="ReactHooks"
 					>
 					Advanced JavaScript Bootcamp Course
 				</a> projects.

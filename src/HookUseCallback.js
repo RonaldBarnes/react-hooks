@@ -16,7 +16,7 @@ export default function HookUseCallback()
 			<blockquote>
 				<h3>
 					<a href="https://react.dev/reference/react/useCallback"
-						target="new">
+						target="ReactHooks">
 						useCallback
 					</a>
 				</h3>

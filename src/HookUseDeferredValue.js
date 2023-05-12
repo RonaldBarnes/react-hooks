@@ -37,7 +37,7 @@ export default function HookDeferredValue()
 			<h2>Hook <code>useDeferredValue</code></h2>
 			<blockquote>
 				<a href="https://react.dev/reference/react/useDeferredValue"
-					target="new"
+					target="ReactHooks"
 					>
 					<code>useDeferredValue</code>
 				</a> is a React Hook that lets you defer

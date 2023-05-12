@@ -50,7 +50,7 @@ export default function HookUseRef()
 			<blockquote>
 				<h3>
 					<a href="https://react.dev/reference/react/useRef"
-						target="new">
+						target="ReactHooks">
 						useRef
 					</a>
 				</h3>

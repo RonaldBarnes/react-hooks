@@ -60,7 +60,7 @@ export default function HookUseStateMultiUpdates()
 				The set function only updates the state variable for the next render.
 				If you read the state variable {" "}
 				<a href="https://react.dev/reference/react/useState"
-					target="new"
+					target="ReactHooks"
 					>
 					after calling the set function
 				</a>, you

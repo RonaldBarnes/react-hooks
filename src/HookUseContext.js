@@ -41,7 +41,7 @@ export default function HookUseContext()
 			<blockquote>
 				<h3>
 					<a href="https://react.dev/reference/react/useContext"
-						target="new">
+						target="ReactHooks">
 						useContext
 					</a>
 				</h3>

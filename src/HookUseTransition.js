@@ -30,7 +30,7 @@ export default function HookUseTransition()
 			<blockquote>
 				<h3>
 					<a href="https://react.dev/reference/react/useTransition"
-						target="new"
+						target="ReactHooks"
 						>
 						useTransition
 					</a>

@@ -24,7 +24,7 @@ export default function HookUseId()
 			<blockquote>
 				<h3>
 					<a href="https://react.dev/reference/react/useId"
-						target="new">
+						target="ReactHooks">
 						<code>useId</code>
 					</a>
 				</h3>

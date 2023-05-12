@@ -32,7 +32,7 @@ export default function HookUseLayoutEffect()
 			<blockquote>
 				<h3>
 					<a href="https://react.dev/reference/react/useLayoutEffect"
-						target="new">
+						target="ReactHooks">
 						useLayoutEffect
 					</a>
 				</h3>
@@ -67,7 +67,7 @@ export default function HookUseLayoutEffect()
 					New in 18: <code>useEffect</code> fires synchronously when it's the
 					result of a discrete input {" "}
 					<a href="https://github.com/reactwg/react-18/discussions/128"
-						target="new"
+						target="ReactHooks"
 						>
 						#128
 					</a>.

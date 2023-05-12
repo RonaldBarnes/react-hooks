@@ -113,7 +113,7 @@ const updateCountOnly = (value) => {
 				React will ignore your update if the next state is equal to the
 				previous state, {" "}
 				<a href="https://react.dev/reference/react/useState#ive-updated-the-state-but-logging-gives-me-the-old-value"
-					target="new"
+					target="ReactHooks"
 					>
 					as determined by an Object.is
 				</a>

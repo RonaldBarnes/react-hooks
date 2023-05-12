@@ -40,7 +40,7 @@ export default function HookUseDebugValue()
 			<blockquote>
 				<h3>
 					<a href="https://react.dev/reference/react/useDebugValue"
-						target="new">
+						target="ReactHooks">
 						useDebugValue
 					</a>
 				</h3>

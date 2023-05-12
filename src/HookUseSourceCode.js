@@ -52,6 +52,16 @@ function Code()
 	const code = `
 import useSourceCode from "./hooks/useSourceCode";
 
+export default function HookBlahBlah()
+	{
+	return (
+		<div>
+			blah blah blah
+			<Code />
+		</div>
+		); end return
+	}	// end HookBlahBlah
+
 
 function Code()
 	{

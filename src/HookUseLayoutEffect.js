@@ -9,8 +9,6 @@ import React,
 	from "react";
 import { Link } from 'react-router-dom';
 
-import useEventListener from "./hooks/useEventListener";
-
 
 export default function HookUseLayoutEffect()
 	{

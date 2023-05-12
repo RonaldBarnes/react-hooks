@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
-import useTranslation from "./hooks/useTranslation";
+// Lifted state to App.js, see props...
+// import useTranslation from "./hooks/useTranslation";
 import useSourceCode from "./hooks/useSourceCode";
 
 

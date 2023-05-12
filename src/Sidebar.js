@@ -37,7 +37,8 @@ export function SidebarMenu()
 	// Save showing status to state, to trigger re-render of menu after changes,
 	// like when window resizes to "small", sidebar disappears, sidebar-menu should
 	// switch to hamburger menu from close "X":
-	let [showingSidebar2,setShowingSidebar2] = useState(showingSidebar.current);
+	// let [showingSidebar2,setShowingSidebar2] = useState(showingSidebar.current);
+	let [setShowingSidebar2] = useState(showingSidebar.current);
 
 
 

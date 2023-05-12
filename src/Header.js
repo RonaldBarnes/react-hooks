@@ -2,7 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 
 // import useDarkMode from "./hooks/useDarkMode";
-import useTranslation from "./hooks/useTranslation";
+// import useTranslation from "./hooks/useTranslation";
 
 
 export default function Header(

@@ -8,7 +8,7 @@
 
 export const flags = {
 		"en": "/images/canada.png",
-		"en": "/images/united-kingdom.png",
+		// "en": "/images/united-kingdom.png",
 		"hk": "/images/hong-kong.png"
 	}
 

@@ -11,7 +11,8 @@ export default function useTranslation()
 	const [fallbackLanguage, setFallbackLanguage] =
 		useSessionStorage("fallbackLanguage", "en");
 
-	const PINYIN = 0;
+	// Which array element to present (PinYin is useless here):
+	// const PINYIN = 0;
 	const KANJI = 1;
 	const RETURN_WORD = language === "en" ? 0 : KANJI;
 

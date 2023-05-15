@@ -38,7 +38,7 @@ export function SidebarMenu()
 	// like when window resizes to "small", sidebar disappears, sidebar-menu should
 	// switch to hamburger menu from close "X":
 	// let [showingSidebar2,setShowingSidebar2] = useState(showingSidebar.current);
-	let [setShowingSidebar2] = useState(showingSidebar.current);
+	let [showingSidebar2, setShowingSidebar2] = useState(showingSidebar.current);
 
 
 
@@ -79,8 +79,10 @@ export function SidebarMenu()
 
 		return () => {
 			console.log("Sidebar.js useEffect RETURN function remove eventListener...");
-			document.querySelector(".sidebar-menu")
-				.removeEventListener("click", clickSidebarMenu);
+			// Encountered a "null" error upon restarting server:
+			const sb = document.querySelector(".sidebar-menu")
+			if (sb !== null)
+				sb.removeEventListener("click", clickSidebarMenu);
 			}
 		}, [])
 

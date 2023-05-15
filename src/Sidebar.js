@@ -74,7 +74,7 @@ export function SidebarMenu()
 		setTimeout( () => {
 			console.log("Sidebar.js setTimeout addEventListener next:");
 			document.querySelector(".sidebar-menu")
-				.addEventListener("click", (e) => clickSidebarMenu(e))
+				.addEventListener("click", clickSidebarMenu)
 			}, 1000);
 
 		return () => {

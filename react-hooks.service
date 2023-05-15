@@ -1,0 +1,19 @@
+[Unit]
+Description=React.js Hooks Examples
+
+
+After=network.target
+
+[Service]
+## Type=simple
+
+
+ExecStart=nodemon
+WorkingDirectory=/home/uid1/Projects/react/hooks-webdev-simplified/
+## WorkingDirectory=/home/uid1/Projects/udemy/nodejs/react/hooks-webdev-simplified/
+
+## Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+

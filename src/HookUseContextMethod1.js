@@ -1,11 +1,12 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import HookUseContextFunctionComponent from "./HookUseContextFunctionComponent";
 import HookUseContextClassComponent from "./HookUseContextClassComponent";
 
 import { ThemeContext } from "./HookUseContext";
 // export const ThemeContext = React.createContext();
 
+import useSourceCode from "./hooks/useSourceCode";
 
 
 export default function HookUseContextMethod1()
@@ -13,6 +14,12 @@ export default function HookUseContextMethod1()
 	console.log("%cHookUseContext", "color: red");
 
 	const [darkTheme, setDarkTheme] = useState(false);
+
+	useEffect( () => {
+//		setTimeout( () => {
+			window.scrollTo({top:0, behavior:"smooth"});
+//			}, 750)
+		}, [])
 
 	function toggleTheme()
 		{
@@ -38,46 +45,12 @@ export default function HookUseContextMethod1()
 				Further down the page, we'll see a <b>class</b> component version.
 			</p>
 
-			<pre className="jsx"><code>
-{`
-// Inside HookUseContext.js:
-import HookUseContextFunctionComponent from "./HookUseContextFunctionComponent";
-`}<span style={{color: "lightgreen"}}>{`
-export const ThemeContext = React.createContext();`}</span>
-{`
-
-const [darkTheme, setDarkTheme] = useState(false);
-
-function toggleTheme()
-  {
-  setDarkTheme( prevTheme => !prevTheme);
-  }
-...`}<span style={{color: "lightgreen"}}>{`
-<ThemeContext.Provider value={darkTheme}>
-  <button onClick={toggleTheme}>Toggle Theme</button>
-  <HookUseContextFunctionComponent />
-  <HookUseContextClassComponent />
-</ThemeContext.Provider>
-`}</span></code></pre>
-
-			<pre className="jsx"><code>
-{`
-// Inside HookUseContextFunctionComponent.js:
-import React, { useContext} from "react";
-`}<span style={{color: "lightgreen"}}>{`
-import { ThemeContext } from "./HookUseContext";
-const darkTheme = useContext(ThemeContext);`}</span>{`
-...
-const themeStyles = {
-  backgroundColor: darkTheme ? "#555" : "#eee",
-  color: darkTheme ? "#eee" : "#555",
-...`}
-			</code></pre>
-
 
 			<ThemeContext.Provider value={darkTheme}>
 				<div className="counter">
-					<button onClick={toggleTheme}>Toggle Theme</button>
+					<button onClick={toggleTheme}>
+						Toggle {darkTheme ? "Light" : "Dark"} Theme
+					</button>
 				</div>
 				<HookUseContextFunctionComponent />
 				<HookUseContextClassComponent />
@@ -92,6 +65,109 @@ const themeStyles = {
 			The <code>ThemeContext.Consumer</code> is required, for one thing:
 		</p>
 
+			<h4>HookUseContextMethod1</h4>
+			<Code />
+		</div>
+		); // end return
+	} // end function
+
+
+
+
+function Code()
+	{
+	const code = `
+import React, { useState, useEffect } from 'react';
+import HookUseContextFunctionComponent from "./HookUseContextFunctionComponent";
+import HookUseContextClassComponent from "./HookUseContextClassComponent";
+
+import { ThemeContext } from "./HookUseContext";
+
+import useSourceCode from "./hooks/useSourceCode";
+
+
+export default function HookUseContextMethod1()
+	{
+	const [darkTheme, setDarkTheme] = useState(false);
+
+	function toggleTheme()
+		{
+		setDarkTheme( prevTheme => !prevTheme);
+		}
+
+	return(
+		<div className="hooks">
+			<ThemeContext.Provider value={darkTheme}>
+				<div className="counter">
+					<button onClick={toggleTheme}>
+						Toggle {darkTheme ? "Light" : "Dark"} Theme
+					</button>
+				</div>
+				<HookUseContextFunctionComponent />
+				<HookUseContextClassComponent />
+			</ThemeContext.Provider>
+
+		<Code />
+		</div>
+		);
+	}	// end HookUseContextMethod1
+
+
+
+
+import { ThemeContext } from "./HookUseContext";
+
+
+export default function HookUseContextFunctionComponent()
+	{
+	const darkTheme = useContext(ThemeContext);
+
+	const themeStyles = {
+		backgroundColor: darkTheme ? "#555" : "#eee",
+		color: darkTheme ? "#eee" : "#555",
+		border: "1px solid grey",
+		borderRadius: "15px",
+		boxShadow: "0px 0px 10px 5px grey",
+		margin: "2rem 3rem",
+		textAlign: "center",
+		}
+
+
+	return (
+		<div style={themeStyles}>
+			<h2>Function Component</h2>
+			<p>Theme: {darkTheme ? "dark" : "light"}</p>
+		</div>
+		);	// end return
+	}	// end function HookUseContextFunctionComponent
+
+`;
+
+	const output = useSourceCode( {code} );
+
+	return (
+		<div className="formattedCode">
+			{output}
+		</div>
+		);
+	}	// end Code
+
+
+
+
+
+
+
+
+
+
+
+
+
+// eslint-disable-next-line
+function CodeOrig()
+	{
+	return (
 			<pre className="jsx"><code>
 {`
 // Inside HookUseContextClassComponent.js:
@@ -131,7 +207,5 @@ export default class HookUseContextClassComponent extends Component
   }  // end class
 `}
 		</code></pre>
-
-		</div>
-		); // end return
-	} // end function
+		);
+	}	// end CodeOrig

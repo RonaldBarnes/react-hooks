@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { ThemeProvider } from "./ThemeContext";
 import { HookUseContextFunctionComponent2 }
@@ -7,10 +7,19 @@ import { HookUseContextFunctionComponent2 }
 import { HookUseContextFunctionComponent3 }
 	from "./HookUseContextFunctionComponent2";
 
+import useSourceCode from "./hooks/useSourceCode";
+
 
 export default function HookUseContextMethod2()
 	{
 	console.log("%cHookUseContextMethod2", "color: red");
+
+	useEffect( () => {
+//		setTimeout( () => {
+			window.scrollTo({top:0, behavior:"smooth"});
+//			}, 750)
+		}, [])
+
 
 	return(
 		<div className="hooks">
@@ -149,6 +158,58 @@ export function HookUseContextFunctionComponent2()
 				That's it, fairly easy as long as one sticks with function components,
 				which is currently the recommended practice.
 			</p>
+
+			<h4>HookUseContextMethod2</h4>
+			<Code />
 		</div>
 		); // end return
-	} // end function
+	} // end function HookUseContextMethod2
+
+
+
+function Code()
+	{
+	const code = `
+import React, { useEffect } from 'react';
+
+import { ThemeProvider } from "./ThemeContext";
+import { HookUseContextFunctionComponent2 }
+	from "./HookUseContextFunctionComponent2";
+import { HookUseContextFunctionComponent3 }
+	from "./HookUseContextFunctionComponent2";
+
+
+export default function HookUseContextMethod2()
+	{
+	return(
+		<div className="hooks">
+
+			<ThemeProvider>
+				<HookUseContextFunctionComponent2 />
+				<HookUseContextFunctionComponent3 />
+			</ThemeProvider>
+		</div>
+		); // end return
+	} // end function HookUseContextMethod2
+
+`;
+
+	const output = useSourceCode( {code} )
+
+	return (
+		<div className="formattedCode">
+			{output}
+		</div>
+		); // end return
+	}	// end Code
+
+
+
+
+
+
+// eslint-disable-next-line
+function CodeOrig()
+	{
+
+	}

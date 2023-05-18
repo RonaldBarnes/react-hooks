@@ -31,4 +31,5 @@ export default function HookUseContextFunctionComponent()
 			<p>Theme: {darkTheme ? "dark" : "light"}</p>
 		</div>
 		);	// end return
-	}	// end function
+	}	// end function HookUseContextFunctionComponent
+

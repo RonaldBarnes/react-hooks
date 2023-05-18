@@ -32,7 +32,7 @@ export default function HookUseMemo()
 			<CodeWithMemo />
 		</div>
 		);	// end return
-	}	// end function
+	}	// end function HookUseMemo
 
 
 
@@ -124,7 +124,7 @@ let slowCounter = slowFunction1();
 			</div>
 		</>
 		);	// end return
-	}	// end function
+	}	// end function HookMemoNoMemo
 
 
 
@@ -195,7 +195,7 @@ function HookMemoWithMemo()
 			</p>
 		</>
 		);	// end return
-	}	// end function HookWithMemo
+	}	// end function HookMemoWithMemo
 
 
 
@@ -240,7 +240,66 @@ function HookMemoWithMemo()
 			<div className="counter">
 				Result of slow function: {slowCounter.toLocaleString()}
 			</div>
-		)
+		);	// end return
+	}	// end function HookMemoWithMemo
+
+
+
+
+
+
+
+function HookMemoNoMemo()
+	{
+	const [counter, setCounter] = useState(0);
+
+	function slowFunction1()
+		{
+		slowCounter = 0;
+		for (let i = 0; i<100000000; i++)
+			{
+			// Do something that takes lots of time:
+			slowCounter += Math.floor(Math.random() * 10);
+			}
+		return slowCounter;
+		}
+	let slowCounter = slowFunction1();
+
+	return (
+		<>
+			<p>
+				We have a <code>slowFunction</code> that gets invoked each render.
+				When clicking the buttons to change the counter value, there is
+				significant delay in the large number being rendered.
+			</p>
+
+			<p>
+				Each button click increments the counter, which is stored in state,
+				but that re-renders the component, re-invoking the "slow function"
+				that produces the numeric output below. It's very slow.
+			</p>
+			<div className="counter">
+				<button
+					type="button"
+					onClick={ () => setCounter(counter => counter-1)}
+					>
+				 -1 
+				</button>
+				{" "} {counter} {" "}
+				<button
+					type="button"
+					onClick={ () => setCounter(counter => counter+1)}
+					autoFocus
+					>
+					+1 
+				</button>
+			</div>
+			<div className="counter">
+				Result of slow function: {" "} {slowCounter.toLocaleString()} {" "}
+			</div>
+		</>
+		);	// end return
+	}	// end function HookMemoNoMemo
 
 `;
 	const output = useSourceCode({code});
@@ -250,5 +309,5 @@ function HookMemoWithMemo()
 			{output}
 		</div>
 		);	// end return
-	}	// end CodeWithMemo
+	}	// end Code
 

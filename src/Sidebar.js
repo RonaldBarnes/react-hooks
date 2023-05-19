@@ -225,6 +225,9 @@ export default function Sidebar()
 						<li>
 							<NavLink to="/useContext/method-2">Method 2</NavLink>
 						</li>
+						<li>
+							<NavLink to="/useContext/best">Best</NavLink>
+						</li>
 					</ul>
 				</li>
 				<li>
@@ -287,44 +290,44 @@ export default function Sidebar()
 function CustomHooks({sortAlpha, sortDirAsc})
 	{
 	const hooksList = [
-		{ seq:  1, name: "useLocalStorage", icon: "fa fa-database" },
-		{ seq:  2, name: "useSessionStorage", icon: "fa fa-database" },
+		{ seq:  10, name: "useLocalStorage", icon: "fa fa-database" },
+		{ seq:  20, name: "useSessionStorage", icon: "fa fa-database" },
 		{ name: "<hr />" },
-		{ seq:  3, name: "useToggle", icon: "fa fa-toggle-on", },
-		{ seq:  4, name: "useTimeout", icon: "fa fa-hourglass-half", },
-		{ seq:  5, name: "useDebounce", icon: "fa fa-hourglass-half", },
-		{ seq:  6, name: "useUpdateEffect", icon: "fa fa-spinner" },
-		{ seq:  7, name: "useArray", icon: "fa fa-layer-group fa-list-ol" },
+		{ seq:  30, name: "useToggle", icon: "fa fa-toggle-on", },
+		{ seq:  40, name: "useTimeout", icon: "fa fa-hourglass-half", },
+		{ seq:  50, name: "useDebounce", icon: "fa fa-hourglass-half", },
+		{ seq:  60, name: "useUpdateEffect", icon: "fa fa-spinner" },
+		{ seq:  70, name: "useArray", icon: "fa fa-layer-group fa-list-ol" },
 		{ name: "<hr />" },
-		{ seq:  8, name: "usePrevious", icon: "fa fa-clock-rotate-left" },
-		{ seq:  9, name: "useStateWithHistory", icon: "fa fa-clock-rotate-left" },
-		{ seq: 10, name: "useStorage", icon: "fa fa-database" },
-		{ seq: 11, name: "useAsync", icon: "fa fa-rotate", },
-		{ seq: 12, name: "useFetch", icon: "fa fa-dog", },
+		{ seq:  80, name: "usePrevious", icon: "fa fa-clock-rotate-left" },
+		{ seq:  90, name: "useStateWithHistory", icon: "fa fa-clock-rotate-left" },
+		{ seq: 100, name: "useStorage", icon: "fa fa-database" },
+		{ seq: 110, name: "useAsync", icon: "fa fa-rotate", },
+		{ seq: 120, name: "useFetch", icon: "fa fa-dog", },
 		{ name: "<hr />" },
-		{ seq: 13, name: "useScript", icon: "fa fa-code", },
-		{ seq: 14, name: "useDeepCompareEffect", icon: "fa fa-balance-scale", },
-		{ seq: 15, name: "useEventListener", icon: "fa fa-headphones-simple", },
-		{ seq: 16, name: "useOnScreen", icon: "fa fa-display", },
+		{ seq: 130, name: "useScript", icon: "fa fa-code", },
+		{ seq: 140, name: "useDeepCompareEffect", icon: "fa fa-balance-scale", },
+		{ seq: 150, name: "useEventListener", icon: "fa fa-headphones-simple", },
+		{ seq: 160, name: "useOnScreen", icon: "fa fa-display", },
 		{ name: "<hr />" },
-		{ seq: 17, name: "useMediaQuery", icon: "fa fa-mobile-screen", },
-		{ seq: 18, name: "useGeolocation", icon: "fa fa-location-dot", },
-		{ seq: 19, name: "useStateWithValidation", icon: "fa fa-check", },
-		{ seq: 20, name: "useSize", icon: "fa fa-ruler", },
-		{ seq: 21, name: "useEffectOnce", icon: "fa fa-1", },
+		{ seq: 170, name: "useMediaQuery", icon: "fa fa-mobile-screen", },
+		{ seq: 180, name: "useGeolocation", icon: "fa fa-location-dot", },
+		{ seq: 190, name: "useStateWithValidation", icon: "fa fa-check", },
+		{ seq: 200, name: "useSize", icon: "fa fa-ruler", },
+		{ seq: 210, name: "useEffectOnce", icon: "fa fa-1", },
 		{ name: "<hr />" },
-		{ seq: 21.5, name: "useClickOutside", icon: "fa fa-computer-mouse", },
-		{ seq: 22, name: "useDarkMode", icon: "fa fa-moon", },
-		{ seq: 23, name: "useClipboard", icon: "fa fa-clipboard", },
-		{ seq: 24, name: "useCookies", icon: "fa fa-cookie-bite", },
-		{ seq: 25, name: "useTranslation", icon: "fa fa-language", },
+		{ seq: 215, name: "useClickOutside", icon: "fa fa-computer-mouse", },
+		{ seq: 220, name: "useDarkMode", icon: "fa fa-moon", },
+		{ seq: 230, name: "useClipboard", icon: "fa fa-clipboard", },
+		{ seq: 240, name: "useCookies", icon: "fa fa-cookie-bite", },
+		{ seq: 250, name: "useTranslation", icon: "fa fa-language", },
 		{ name: "<hr />" },
-		{ seq: 26, name: "useOnlineStatus", icon: "fa fa-wifi", },
-		{ seq: 27, name: "useRenderCount", icon: "fa fa-list-ol", },
-		{ seq: 28, name: "useDebugInfo", icon: "fa fa-bug-slash" },
-		{ seq: 29, name: "useHover", icon: "fa fa-paper-plane fa-overline", },
-		{ seq: 30, name: "useLongPress", icon: "fa fa-hand-point-down", },
-		{ seq: 40, name: "useSourceCode", icon: "fa fa-code", },
+		{ seq: 260, name: "useOnlineStatus", icon: "fa fa-wifi", },
+		{ seq: 270, name: "useRenderCount", icon: "fa fa-list-ol", },
+		{ seq: 280, name: "useDebugInfo", icon: "fa fa-bug-slash" },
+		{ seq: 290, name: "useHover", icon: "fa fa-paper-plane fa-overline", },
+		{ seq: 300, name: "useLongPress", icon: "fa fa-hand-point-down", },
+		{ seq: 400, name: "useSourceCode", icon: "fa fa-code", },
 		];
 
 	let displayList = [];

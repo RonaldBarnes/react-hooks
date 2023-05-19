@@ -15,6 +15,7 @@ import HookUseEffect from "./HookUseEffect";
 import HookUseContext from "./HookUseContext";
 import HookUseContextMethod1 from "./HookUseContextMethod1";
 import HookUseContextMethod2 from "./HookUseContextMethod2";
+import Level0 from "./Level1";
 
 import HookUseRef from "./HookUseRef";
 import HookUseMemo from "./HookUseMemo";
@@ -157,6 +158,10 @@ const App = function()
 							<Route
 								path="method-2"
 								element={<HookUseContextMethod2 />}
+								/>
+							<Route
+								path="best"
+								element={<Level0 />}
 								/>
 							</Route>
 						<Route

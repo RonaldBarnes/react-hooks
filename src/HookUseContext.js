@@ -16,7 +16,6 @@ import HookUseContextClassComponent from "./HookUseContextClassComponent";
 export const ThemeContext = React.createContext();
 
 
-
 export default function HookUseContext()
 	{
 	console.log("%cHookUseContext", "color: red");
@@ -85,6 +84,12 @@ export default function HookUseContext()
 				The <Link to="/useContext/method-2">second example</Link> {" "}
 				will implement a more elegant technique.
 			</p>
+			<p>
+				Finally, this <code>useContext</code> example is {" "}
+				<Link to="/useContext/best">the <b>best</b></Link> (easiest to understand)
+				one.
+			</p>
+
 			<Outlet />
 
 			<h4>HookUseContext</h4>

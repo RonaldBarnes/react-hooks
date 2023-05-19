@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import useSourceCode from "./hooks/useSourceCode";
 
@@ -10,6 +10,12 @@ export const CounterContext = React.createContext();
 export default function Level0()
 	{
 	const [count,setCount] = useState(0);
+
+	useEffect( () => {
+		setTimeout( () => {
+			window.scrollTo({top:0, behavior:"smooth"});
+			}, 250)
+		}, [])
 
 	return(
 		<>
@@ -39,6 +45,7 @@ function Level1()
 	return (
 		<>
 			<h4>Level 1</h4>
+		<div style={{marginBottom:"1rem"}}>
 			<button type="button"
 				onClick={() => setCount( curr => curr - 1)}
 				>
@@ -47,10 +54,12 @@ function Level1()
 			{" "}
 			<button type="button"
 				onClick={() => setCount( curr => curr + 1)}
+				autoFocus
 				>
 				+1
 			</button>
 			<Level2 />
+		</div>
 
 			<Code />
 		</>

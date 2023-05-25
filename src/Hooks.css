@@ -46,6 +46,11 @@ p
 	font-size: 1.25rem;
 	}
 
+/* Make icons in sidebar all same width so list items align properly: */
+.fa
+	{
+	width: 2rem;
+	}
 
 button {
 	padding: 0.5rem 3rem 0.5rem 3rem;

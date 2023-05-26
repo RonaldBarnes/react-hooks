@@ -8,7 +8,8 @@ After=network.target
 ## Type=simple
 
 
-ExecStart=nodemon
+## ExecStart=nodemon
+ExecStart=/snap/bin/yarn run start
 WorkingDirectory=/home/uid1/Projects/react/hooks-webdev-simplified/
 ## WorkingDirectory=/home/uid1/Projects/udemy/nodejs/react/hooks-webdev-simplified/
 

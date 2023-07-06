@@ -16,6 +16,7 @@ export default function HookUseDebounce({t})
 
 	// Set counter to initial value:
 	const [count,setCount] = useState(5);
+	// eslint-disable-next-line
 	const [step, setStep] = useState(0.1);
 
 
@@ -33,7 +34,7 @@ export default function HookUseDebounce({t})
 	function handleChange(e)
 		{
 		console.log(`HANDLE CHANGE count: ${count} e: ${e.target.value}`);
-		setCount(e.target.value);
+		setCount(c => e.target.value);
 		restart();
 		}
 
@@ -95,8 +96,10 @@ export default function HookUseDebounce({t})
 			<p>
 				<button
 					type="button"
-					onClick={() => setCount( c => parseFloat(c) + 1)}
-					>
+					onClick={() => setCount( c =>
+						(parseFloat(c) + 1).toLocaleString(undefined, {minimumFractionDigits: 2})
+						)}
+						>
 					Add 1.00
 				</button>
 				<button

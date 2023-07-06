@@ -15,13 +15,14 @@ export default function HookUseDebounce({t})
 	console.log("%cHookUseDebounce", "color: yellow");
 
 	// Set counter to initial value:
-	const [count,setCount] = useState(10);
+	const [count,setCount] = useState(5);
+	const [step, setStep] = useState(0.1);
 
 
 	// Initiate a count-down timer:
 	const [restart, clear] = useTimeout( () =>
 		timerUpdate( count )
-		, 10
+		, 5
 		);
 
 	// Set an alert when no activity for 2 seconds:
@@ -39,7 +40,7 @@ export default function HookUseDebounce({t})
 	function timerUpdate(c)
 		{
 // console.log(`HANDLE CHANGE THREE count: ${c}`);
-		if (c <= 0)
+		if (c <= step)
 			{
 			// Stop count down at zero:
 			clear();
@@ -47,7 +48,7 @@ export default function HookUseDebounce({t})
 		else
 			{
 			// Limit the amount of digits to 2 (default):
-			setCount(c => (c - 0.01).toLocaleString() );
+			setCount(c => (+c - step).toLocaleString(undefined, {minimumFractionDigits:2}) );
 			restart();
 			}
 		}

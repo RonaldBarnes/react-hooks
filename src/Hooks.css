@@ -1,8 +1,28 @@
 
+/**
+ * Modified 2024-02-12 for handling Light & Dark modes without
+ * FOIT (Flash Of Incorrect Theme).
+ *
+ * Requires all colours to be defined twice inside @media queries checking
+ * "(prefers-color-scheme: {light|dark})" ... AND
+ * again outside the @media queries.
+ *
+ * Repetitive and redundant, but works.
+ *
+ * While moving colour definitions around, I couldn't help but notice how
+ * "regrettable" some of CSS this is.
+ *
+ * I don't recall ever writing selectors this way before, what was I thinking?
+ *
+ * Future PR will be to give this a re-factor.
+ */
+
+/*
 html
 	{
 	color-scheme: light dark;
 	}
+*/
 
 #root {
 	box-sizing: border-box;
@@ -31,14 +51,18 @@ body, input, textarea, button, select
 
 	--link: blue;
 	--visited: purple;
-	--sidebar-background-color: hsla(150, 50%, 50%, 0.25);
+	/**
+	 * By using alpha, the transparency enables body to bleed through
+	 * giving light and dark theme effects with one selector:
+	--sidebar-background-color-light: #cfefdf;
+	--sidebar-background-color-dark: #365646;
+	 */
+	--sidebar-background-color-light: hsla(150, 50%, 50%, 0.25);
+	--sidebar-background-color-dark: var(--sidebar-background-color-light);
 	--blockquote-bg-color: hsla(50, 50%, 50%, 0.5);
 	--header-color: whitesmoke;
 	--header-bg-color: #333;
-
-	color: var(--color);
-	background-color: var(--background-color);
-	box-shadow: var(--box-shadow-color);
+	transition: background-color 500ms;
 	}
 
 p
@@ -60,7 +84,6 @@ button {
 	border-top-color: var(--button-edge-light);
 	border-right-color: var(--button-edge-dark);
 	border-bottom-color: var(--button-edge-dark);
-	transition: background-color 250ms;
 	}
 button:active {
 	border-left-color: var(--button-edge-dark);
@@ -78,18 +101,18 @@ button, input, textarea {
 	background-color: var(--button-background);
 	color: var(--button-color);
 	}
+/*
 a {
 	color: var(--link);
 	}
 a:visited {
 	color: var(--visited);
 	}
+*/
 input[type="checkbox"]
 	{
 	width: 2rem;
 	height: 2rem;
-	color: red !important;
-	background-color: goldenrod;
 	}
 
 h2
@@ -120,7 +143,7 @@ h4
 
 /*
 	NOTE: the !important is required to ensure widths take effect,now that
-	widths instead of display:{none|block} are used to show/hide sidebar:
+	widths instead of display:{none|block} are used to show & hide sidebar:
 */
 .nodisplay
 	{
@@ -237,7 +260,7 @@ img .flag
 	height: min-content;
 	/* outline: 1px solid greenyellow; */
 	font-size: 2rem;
-	background-color: var(--sidebar-background-color);
+	background-color: var(--sidebar-background-color-light);
 	line-height: 3rem;
 	z-index: 1;
 	/* border-top-right-radius: 25%; */
@@ -256,7 +279,7 @@ img .flag
 	}
 
 .sidebar {
-	background-color: var(--sidebar-background-color);
+	background-color: var(--sidebar-background-color-light);
 	grid-area: sidebar;
 	padding-bottom: 1rem;
 	overflow: scroll;
@@ -458,13 +481,67 @@ div.todos {
 	margin-top: 2rem;
 	}
 
+.fa
+	{
+	text-align: center;
+	}
+
+
+
+/**
+ * Media query repeats all dark theme selector definitions.
+ *
+ * This removes Flash Of Incorrect Theme (FOIT) if use's OS or browser
+ * is set to prefer dark theme:
+ */
+@media ("(prefers-color-scheme: dark)")
+	{
+	body,
+	body * textarea,
+	body * input,
+	body * button,
+	body * select,
+	body * input[type="checkbox"]
+		{
+		--color: whitesmoke;
+		--background-color: #333;
+		--box-shadow-color: grey;
+		background-color: var(--background-color);
+		color: var(--color);
+		}
+
+	body * a {
+		color: orange;
+		}
+	 * a:visited {
+		color: red;
+		}
+	.App-header {
+		--box-shadow-color: grey;
+		}
+	blockquote {
+		--box-shadow-color: grey;
+		}
+	body * .todoItem {
+		color: whitesmoke;
+		}
+	body * .todoItemCompleted {
+		color: grey;
+		}
+	.sidebar, .sidebar-menu
+		{
+		background-color: var(--sidebar-background-color-dark);
+		}
+	}	/* end @media prefers-color-scheme: dark */
 
 
 
 
 
 
-
+/**
+ * Repeat @media selectors, allows JS to add or remove class(es):
+ */
 body.darkModeTheme,
 body.darkModeTheme * textarea,
 body.darkModeTheme * input,
@@ -497,6 +574,13 @@ body.darkModeTheme * .todoItem {
 body.darkModeTheme * .todoItemCompleted {
 	color: grey;
 	}
+.sidebar, .sidebar-menu
+	{
+	background-color: var(--sidebar-background-color-dark);
+	}
+/**
+ * End DARK THEME selectors
+ */
 
 
 /*
@@ -510,4 +594,97 @@ button:disabled, *:disabled, #btnOpen:disabled
 	{
 	background-color: gray;
 	color: lightgray;
+	}
+
+
+
+
+/**
+ * Media query repeats all light theme selector definitions.
+ *
+ * This removes Flash Of Incorrect Theme (FOIT) if use's OS or browser
+ * is set to prefer light theme:
+ */
+@media ("(prefers-color-scheme: light)")
+	{
+	body.lightModeTheme,
+	body.lightModeTheme * textarea,
+	body.lightModeTheme * input,
+	body.lightModeTheme * button,
+	body.lightModeTheme * select,
+	body.lightModeTheme * input[type="checkbox"]
+		{
+		color: var(--color);
+		background-color: var(--background-color);
+		box-shadow: var(--box-shadow-color);
+		--color: whitesmoke;
+		--background-color: #333;
+		--box-shadow-color: grey;
+		}
+
+	a.lightModeTheme {
+		color: var(--link);
+		}
+	body.lightModeTheme * a:visited
+		{
+		color: var(--visited);
+		color: darkgreen;
+		}
+	.App-header {
+		--box-shadow-color: grey;
+		}
+	blockquote.lightModeTheme {
+		--box-shadow-color: grey;
+		}
+	body * .todoItem {
+		color: whitesmoke;
+		}
+	body * .todoItemCompleted {
+		color: grey;
+		}
+	.sidebar, .sidebar-menu
+		{
+		background-color: var(--sidebar-background-color-light);
+		}
+	}	/* end @media prefers-color-scheme: light */
+
+
+
+body.lightModeTheme,
+body.lightModeTheme * textarea,
+body.lightModeTheme * input,
+body.lightModeTheme * button,
+body.lightModeTheme * select,
+body.lightModeTheme * input[type="checkbox"]
+	{
+	--color: #333;
+	--background-color: whitesmoke;
+	--box-shadow-color: grey;
+	color: var(--color);
+	background-color: var(--background-color);
+	box-shadow: var(--box-shadow-color);
+	}
+
+body.lightModeTheme * a {
+	color: var(--link);
+	}
+.lightModeTheme * a:visited {
+	color: var(--visited);
+	}
+
+.App-header {
+	--box-shadow-color: grey;
+	}
+blockquote.lightModeTheme {
+	--box-shadow-color: grey;
+	}
+body * .todoItem {
+	color: whitesmoke;
+	}
+body * .todoItemCompleted {
+	color: grey;
+	}
+.sidebar, .sidebar-menu
+	{
+	background-color: var(--sidebar-background-color-light);
 	}

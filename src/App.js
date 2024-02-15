@@ -1,6 +1,7 @@
 
 // import React, { Component } from "react";
 import React from "react";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // import "./App.css";
@@ -98,8 +99,13 @@ const App = function()
 		window.scrollTo({top:0, behavior:"smooth"});
 		}, 500);
 
-	const DEFAULT_THEME_DARK = false;
-	const [darkMode, setDarkMode, removeTheme] = useDarkMode(DEFAULT_THEME_DARK);
+
+  const {
+    darkMode,
+    setDarkTheme,
+    removeTheme,
+    DEFAULT_THEME_DARK
+    } = useDarkMode()
 
 	const {
 		language,
@@ -117,7 +123,7 @@ const App = function()
 			<div className="container">
 				<Header
 					darkMode={darkMode}
-					setDarkMode={setDarkMode}
+					setDarkMode={setDarkTheme}
 					defaultDarkTheme={DEFAULT_THEME_DARK}
 					language={language}
 					setLanguage={setLanguage}
@@ -324,7 +330,7 @@ const App = function()
 							path="/useDarkMode"
 							element={<HookUseDarkMode
 								darkMode={darkMode}
-								setDarkMode={setDarkMode}
+								setDarkMode={setDarkTheme}
 								removeTheme={removeTheme}
 								defaultDarkTheme={DEFAULT_THEME_DARK}
 								/>}
@@ -387,8 +393,8 @@ const App = function()
 					<Footer />
 				</BrowserRouter>
 		</div>
-		);
-	}
+    );	// end return
+  }	// end function App
 //}
 
 export default App;

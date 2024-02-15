@@ -14,13 +14,14 @@ export default function HookUseDarkMode(
 		defaultDarkTheme
 	})
 	{
+
 	console.log(`%cHookUseDarkMode darkMode: ${darkMode.toString()}`, "color: red");
 
 //	const [darkMode, setDarkMode] = useDarkMode();
 
 	useEffect( () => {
 		// Scroll to top after a delay for autoFocus:
-			window.scrollTo({top:0, behavior:"smooth"})
+    window.scrollTo({top:0, behavior:"smooth"})
 		}, []);
 
 
@@ -35,25 +36,37 @@ export default function HookUseDarkMode(
 				The theme setting (dark / light) will be stored in localStorage.
 			</p>
 			<p>
-				This hook makes use of <code>useMediaQuery</code> and <code>useStorage</code>
-				to detect is user's browser prefers dark mode.
+        This hook makes use of:
 			</p>
-			<h4>NOTE:</h4>
+      <ul>
+        <li>
+          <code>useMediaQuery</code>
+          <ul><li><code>useEventListener</code></li></ul>
+        </li>
+        <li>
+          <code>useStorage</code> to detect if user's browser prefers
+          dark mode.
+        </li>
+      </ul>
 			<p>
-				Now that <code>useDarkMode</code> has been moved to the Header, the button
-				on this page can fail to reflect the current state of local storage.
+        If your OS is set to use dark theme from sunset to sunrise,
+        this hook will recognize that and change appropriately.
 			</p>
-			<p>
-				<s>
-					Also, toggling the button here can make the header show an incorrect theme.
-					Will look into <code>useContext</code> at a higher level, or
-					<code>useReducer</code> to raise / lift state so it can be shared among
-					components.
-				</s>
-			</p>
-			<h3>
-				Updated: lifted state to App.js!
-			</h3>
+
+        <h4>Your Settings</h4>
+        <h5>
+          Your OS / browser is requesting light mode?
+        </h5>
+        <pre>
+          {window.matchMedia("(prefers-color-scheme: light)").matches.toString()}
+        </pre>
+        <h5>
+          Your OS / browser is requesting dark mode?
+        </h5>
+        <pre>
+          {window.matchMedia("(prefers-color-scheme: dark)").matches.toString()}
+        </pre>
+
 			<hr />
 
 			<p>
@@ -64,7 +77,9 @@ export default function HookUseDarkMode(
 					<button
 						type="button"
 						onClick={ () => {
-						console.log(`CLICK enabled? ${darkMode}`);
+            // console.log(`HookUseDarkMode.js button CLICKed. `,
+            //	`darkMode was:`, darkMode
+            //	);
 						setDarkMode( currTheme => !currTheme)
 						}}
 						autoFocus
@@ -206,6 +221,47 @@ export default function HookUseDarkMode(
 
 	return (
 		<div className="hooks">
+			<h2>Hook <code>UseDarkMode</code></h2>
+			<p>
+				This hook will probe browser settings for
+				"<code>prefers-color-scheme: dark</code>", and set theme appropriately.
+			</p>
+			<p>
+				The theme setting (dark / light) will be stored in localStorage.
+			</p>
+			<p>
+				This hook makes use of:
+			</p>
+			<ul>
+				<li>
+					<code>useMediaQuery</code>
+					<ul><li><code>useEventListener</code></li></ul>
+				</li>
+				<li>
+					<code>useStorage</code> to detect if user's browser prefers dark mode.
+				</li>
+			</ul>
+			<p>
+				If your OS is set to use dark theme from sunset to sunrise,
+				this hook will recognize that and change appropriately.
+			</p>
+
+			<h4>Your Settings</h4>
+			<h5>
+				Your OS / browser is requesting light mode?
+			</h5>
+			<pre>
+				{window.matchMedia("(prefers-color-scheme: light)").matches.toString()}
+			</pre>
+			<h5>
+				Your OS / browser is requesting dark mode?
+			</h5>
+			<pre>
+				{window.matchMedia("(prefers-color-scheme: dark)").matches.toString()}
+			</pre>
+
+			<hr />
+
 			<p>
 				Click button to toggle theme between dark and light modes.
 			</p>
@@ -213,7 +269,12 @@ export default function HookUseDarkMode(
 				<p>
 					<button
 						type="button"
-						onClick={ () => setDarkMode( currTheme => !currTheme)}
+						onClick={ () => {
+						// console.log("HookUseDarkMode.js button CLICKed. ",
+						//	"darkMode was:", darkMode
+						//	);
+						setDarkMode( currTheme => !currTheme)
+						}}
 						autoFocus
 						>
 						Toggle Dark Mode (is {darkMode.toString() })
@@ -227,14 +288,16 @@ export default function HookUseDarkMode(
 							// Reset theme to default:
 							setDarkMode(defaultDarkTheme);
 							}}>
-						Clear Theme Storage
+						Clear Theme Storage & Reset to Default ({defaultDarkTheme.toString()})
 					</button>
 				</p>
 			</div>
-			{/* <Code /> */}
+			<Code />
 		</div>
 		);	// end return
 	}	// end function
+
+
 
 
 
@@ -245,26 +308,91 @@ import { useStorage } from "./useStorage";
 import useMediaQuery from "./useMediaQuery";
 
 
-export default function useDarkMode(defaultValue)
+export default function useDarkMode()
 	{
-	const [darkTheme, setDarkTheme] = useStorage("useDarkMode", defaultValue, localStorage);
-	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-	const enabled = typeof(darkTheme) !== "undefined"
-		? darkTheme
-		: prefersDarkMode
+  // console.log("useDarkMode.js()");
 
+  // useMediaQuery adds a listener so changes (i.e. sunrise / sunset)
+  // can invoke change to theme:
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+
+  const DEFAULT_THEME_DARK =
+    !window.matchMedia("(prefers-color-scheme: light)").matches
+    ;
+
+/**
+ * This is messeded up: initial return from useMediaQuery() is false, BUT
+ * directly using matchMedia() for same term is true
+ *
+  console.log("useDarkMode.js: prefersDarkMode:", prefersDarkMode,
+    ""(prefers-color-scheme: dark)":",
+    matchMedia("(prefers-color-scheme: dark)").matches
+    );
+*/
+
+  const [darkTheme, setDarkTheme] = useStorage(
+    "useDarkMode",
+    prefersDarkMode,
+    localStorage
+    );
+
+	// Capture change to darkTheme, triggered by
+	// user pressing button to change theme:
 	useEffect( () => {
-		document.body.classList.toggle("darkModeTheme", enabled)
-		}, [enabled]
-		);
+		console.log("useDarkMode.js: useEffect(): darkTheme changed:", darkTheme);
+		if (darkTheme)
+			{
+			document.body.classList.add("darkModeTheme");
+			document.body.classList.remove("lightModeTheme");
+			}
+		else
+			{
+			document.body.classList.add("lightModeTheme");
+			document.body.classList.remove("darkModeTheme");
+			}
+		}, [darkTheme]
+		);	// end useEffect()[darkTheme]
+
+
+	// Capture change to prefersDarkMode, triggered by
+	// event listener on prefers-color-scheme (i.e. sunrise / sunset, etc.)
+	useEffect( () => {
+		console.log("useDarkMode.js: useEffect(): prefersDarkMode changed:",
+			prefersDarkMode);
+		if (prefersDarkMode)
+			{
+			document.body.classList.add("darkModeTheme");
+			document.body.classList.remove("lightModeTheme");
+			}
+		else
+			{
+			document.body.classList.add("lightModeTheme");
+			document.body.classList.remove("darkModeTheme");
+			}
+
+		// Ensure change is passed to state and therefore re-renders new colours:
+		setDarkTheme( curr => prefersDarkMode);
+		}, [prefersDarkMode]
+		);	// end useEffect()[prefersDarkMode]
+
 
 	// Allow for removal of localStorage key:
 	const removeTheme = useCallback( () => {
 		localStorage.removeItem("useDarkMode");
-		// setDarkTheme(useDarkMode);
+		// Should we RESET theme as well as removing from localStorage?
+		// For now, it's part of onClick on button
+		// "Clear Theme Storage & Reset to Default" in HookUseDarkMode.js
+		// setDarkTheme(defaultDarkTheme);
 		});
 
-	return [enabled, setDarkTheme, removeTheme]
+	// Return object instead of array: order doesn't matter:
+	// return [enabled, setDarkTheme, removeTheme]
+	return {
+		darkMode: darkTheme,
+		setDarkTheme,
+		removeTheme,
+		DEFAULT_THEME_DARK
+		}
 	}	// end function useDarkMode
 
 `;

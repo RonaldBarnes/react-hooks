@@ -26,17 +26,17 @@ export default function useDarkMode()
     );
 */
 
-  const [darkTheme, setDarkTheme] = useStorage(
+  const [useDarkTheme, setUseDarkTheme] = useStorage(
     "useDarkMode",
     prefersDarkMode,
     localStorage
     );
 
-  // Capture change to darkTheme, triggered by
+  // Capture change to useDarkTheme, triggered by
   // user pressing button to change theme:
   useEffect( () => {
-    console.log(`useDarkMode.js: useEffect(): darkTheme changed:`, darkTheme);
-    if (darkTheme)
+    console.log(`useDarkMode.js: useEffect(): useDarkTheme changed:`, useDarkTheme);
+    if (useDarkTheme)
       {
       document.body.classList.add("darkModeTheme");
       document.body.classList.remove("lightModeTheme");
@@ -46,8 +46,8 @@ export default function useDarkMode()
       document.body.classList.add("lightModeTheme");
       document.body.classList.remove("darkModeTheme");
       }
-    }, [darkTheme]
-    );	// end useEffect()[darkTheme]
+    }, [useDarkTheme]
+    );	// end useEffect()[useDarkTheme]
 
 
   // Capture change to prefersDarkMode, triggered by
@@ -67,7 +67,7 @@ export default function useDarkMode()
       }
 
     // Ensure change is passed to state and therefore re-renders new colours:
-    setDarkTheme( curr => prefersDarkMode);
+    setUseDarkTheme( curr => prefersDarkMode);
     }, [prefersDarkMode]
     );	// end useEffect()[prefersDarkMode]
 
@@ -78,14 +78,14 @@ export default function useDarkMode()
     // Should we RESET theme as well as removing from localStorage?
     // For now, it's part of onClick on button
     // "Clear Theme Storage & Reset to Default" in HookUseDarkMode.js
-    // setDarkTheme(defaultDarkTheme);
+    // setUseDarkTheme(defaultDarkTheme);
 		});
 
   // Return object instead of array: order doesn't matter:
-  // return [enabled, setDarkTheme, removeTheme]
+  // return [enabled, setUseDarkTheme, removeTheme]
   return {
-    darkMode: darkTheme,
-    setDarkTheme,
+    useDarkTheme,
+    setUseDarkTheme,
     removeTheme,
     DEFAULT_THEME_DARK
     }

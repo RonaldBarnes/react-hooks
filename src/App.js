@@ -98,9 +98,14 @@ document.title = "React Hooks Notes";
 
 const App = function()
 	{
+/*
+  // This is a handy location, but some components should not
+  // scroll every re-render (HookUseDarkTheme, ...)
+  // So, each component gets own scroll
 	setTimeout( () => {
 		window.scrollTo({top:0, behavior:"smooth"});
 		}, 500);
+*/
 
   const {
     useDarkTheme,

@@ -1,21 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 
 // import { useDarkMode } from "./hooks/useDarkMode";
 import useSourceCode from "./hooks/useSourceCode";
 
+import { contextTheme } from "./App.js";
 
 // Now this component takes props from App.js to sync the theme setting
 // between this and the Header:
-export default function HookUseDarkMode(
+export default function HookUseDarkMode()
 	{
-		darkMode,
-		setDarkMode,
-		removeTheme,
-		defaultDarkTheme
-	})
-	{
+  const {
+    useDarkTheme,
+    setUseDarkTheme,
+    removeTheme,
+    DEFAULT_THEME_DARK: defaultDarkTheme,
+    } = useContext(contextTheme);
 
-	console.log(`%cHookUseDarkMode darkMode: ${darkMode.toString()}`, "color: red");
+  console.log(`%cHookUseDarkMode useDarkTheme: ${useDarkTheme.toString()}`, "color: red");
 
 //	const [darkMode, setDarkMode] = useDarkMode();
 
@@ -80,11 +81,11 @@ export default function HookUseDarkMode(
             // console.log(`HookUseDarkMode.js button CLICKed. `,
             //	`darkMode was:`, darkMode
             //	);
-						setDarkMode( currTheme => !currTheme)
+            setUseDarkTheme( currTheme => !currTheme)
 						}}
 						autoFocus
 						>
-						Toggle Dark Mode (is {darkMode.toString() })
+            Toggle Dark Mode (is {useDarkTheme.toString() })
 					</button>
 				</p>
 				<p>
@@ -93,9 +94,9 @@ export default function HookUseDarkMode(
 						onClick={ () => {
 							removeTheme();
 							// Reset theme to default:
-							setDarkMode(defaultDarkTheme);
+              setUseDarkTheme(defaultDarkTheme);
 							}}>
-						Clear Theme Storage & Reset to Default ({defaultDarkTheme.toString()})
+            Clear Theme Storage & Reset to Default ({defaultDarkTheme.toString()})
 					</button>
 				</p>
 			</div>
@@ -108,96 +109,6 @@ export default function HookUseDarkMode(
 
 
 
-// eslint-disable-next-line
-function CodeOrig()
-	{
-	return (
-		<div className="jsx" style={{marginTop:"2rem"}}>
-			<code className="green">
-				{`
-import { useDarkMode } from "./hooks/useDarkMode";
-
-export default function HookUseDarkMode()
-  {
-  const [open, setOpen] = useState(false);
-  const modalRef = useRef();
-
-  // This hook will determine boundaries of what modalRef points to,
-  // and run the callback if OUTSIDE of it:
-  useDarkMode(modalRef, () => {
-    if (open)
-      {
-      setOpen( prev => !prev);
-      }
-    });
-`}
-			</code>
-
-			<code>
-{`...
-      <div className="counter">
-        <button onClick={ () => setOpen(true)}>
-          Open Modal {open.toString()}
-        </button>
-        { open && <div
-            ref={modalRef}
-            style={{ /* display: open ? "block" : "none", */
-              width: "200px",
-              height: "100px",
-              margin: "1rem auto",
-              padding: "1rem",
-              border: "1px solid red",
-              opacity: 1,
-              color: "hsl(150, 50%, 50%)",
-              boxShadow: "1px 1px 20px 0px lightgrey",
-              }}
-            >
-            Modal...
-          </div>
-...
-`}
-			</code>
-
-			<code className="green">
-{`
-
-import { useState, useRef } from "react";
-
-import { useEventListener } from "../HookUseEventListener";
-
-`}
-			</code>
-			<code className="red">
-{`
-export function useDarkMode(ref, callback)
-  {
-  // Opens then closes immediately due to dev mode?
-  // This fixes it:
-  let justOpened = useRef(true);
-
-  useEventListener("click",
-    e => {
-      if (ref.current == null
-          || ref.current.contains(e.target)
-          || justOpened
-          )
-        {
-        justOpened = false;
-        return;
-        }
-      callback(e)
-      },
-    document
-    );
-
-  }  // end function
-
-`}
-			</code>
-		</div>
-
-		); // end return
-	}	// end function
 
 
 
@@ -209,8 +120,8 @@ function Code()
 // between this and the Header:
 export default function HookUseDarkMode(
 	{
-		darkMode,
-		setDarkMode,
+		useDarkTheme,
+		setUseDarkTheme,
 		removeTheme,
 		defaultDarkTheme
 	})
@@ -273,11 +184,11 @@ export default function HookUseDarkMode(
 						// console.log("HookUseDarkMode.js button CLICKed. ",
 						//	"darkMode was:", darkMode
 						//	);
-						setDarkMode( currTheme => !currTheme)
+						setUseDarkTheme( currTheme => !currTheme)
 						}}
 						autoFocus
 						>
-						Toggle Dark Mode (is {darkMode.toString() })
+						Toggle Dark Mode (is {useDarkTheme.toString() })
 					</button>
 				</p>
 				<p>
@@ -286,7 +197,7 @@ export default function HookUseDarkMode(
 						onClick={ () => {
 							removeTheme();
 							// Reset theme to default:
-							setDarkMode(defaultDarkTheme);
+							setUseDarkTheme(defaultDarkTheme);
 							}}>
 						Clear Theme Storage & Reset to Default ({defaultDarkTheme.toString()})
 					</button>
@@ -330,69 +241,69 @@ export default function useDarkMode()
     );
 */
 
-  const [darkTheme, setDarkTheme] = useStorage(
+  const [useDarkTheme, setUseDarkTheme] = useStorage(
     "useDarkMode",
     prefersDarkMode,
     localStorage
     );
 
-	// Capture change to darkTheme, triggered by
-	// user pressing button to change theme:
-	useEffect( () => {
-		console.log("useDarkMode.js: useEffect(): darkTheme changed:", darkTheme);
-		if (darkTheme)
-			{
-			document.body.classList.add("darkModeTheme");
-			document.body.classList.remove("lightModeTheme");
-			}
-		else
-			{
-			document.body.classList.add("lightModeTheme");
-			document.body.classList.remove("darkModeTheme");
-			}
-		}, [darkTheme]
-		);	// end useEffect()[darkTheme]
+  // Capture change to useDarkTheme, triggered by
+  // user pressing button to change theme:
+  useEffect( () => {
+    console.log("useDarkMode.js: useEffect(): useDarkTheme changed:", useDarkTheme);
+    if (useDarkTheme)
+      {
+      document.body.classList.add("darkModeTheme");
+      document.body.classList.remove("lightModeTheme");
+      }
+    else
+      {
+      document.body.classList.add("lightModeTheme");
+      document.body.classList.remove("darkModeTheme");
+      }
+    }, [useDarkTheme]
+    );	// end useEffect()[useDarkTheme]
 
 
-	// Capture change to prefersDarkMode, triggered by
-	// event listener on prefers-color-scheme (i.e. sunrise / sunset, etc.)
-	useEffect( () => {
-		console.log("useDarkMode.js: useEffect(): prefersDarkMode changed:",
-			prefersDarkMode);
-		if (prefersDarkMode)
-			{
-			document.body.classList.add("darkModeTheme");
-			document.body.classList.remove("lightModeTheme");
-			}
-		else
-			{
-			document.body.classList.add("lightModeTheme");
-			document.body.classList.remove("darkModeTheme");
-			}
+  // Capture change to prefersDarkMode, triggered by
+  // event listener on prefers-color-scheme (i.e. sunrise / sunset, etc.)
+  useEffect( () => {
+    console.log("useDarkMode.js: useEffect(): prefersDarkMode changed:",
+      prefersDarkMode);
+    if (prefersDarkMode)
+      {
+      document.body.classList.add("darkModeTheme");
+      document.body.classList.remove("lightModeTheme");
+      }
+    else
+      {
+      document.body.classList.add("lightModeTheme");
+      document.body.classList.remove("darkModeTheme");
+      }
 
-		// Ensure change is passed to state and therefore re-renders new colours:
-		setDarkTheme( curr => prefersDarkMode);
-		}, [prefersDarkMode]
-		);	// end useEffect()[prefersDarkMode]
+    // Ensure change is passed to state and therefore re-renders new colours:
+    setUseDarkTheme( curr => prefersDarkMode);
+    }, [prefersDarkMode]
+    );	// end useEffect()[prefersDarkMode]
 
 
 	// Allow for removal of localStorage key:
 	const removeTheme = useCallback( () => {
 		localStorage.removeItem("useDarkMode");
-		// Should we RESET theme as well as removing from localStorage?
-		// For now, it's part of onClick on button
-		// "Clear Theme Storage & Reset to Default" in HookUseDarkMode.js
-		// setDarkTheme(defaultDarkTheme);
+    // Should we RESET theme as well as removing from localStorage?
+    // For now, it's part of onClick on button
+    // "Clear Theme Storage & Reset to Default" in HookUseDarkMode.js
+    // setUseDarkTheme(defaultDarkTheme);
 		});
 
-	// Return object instead of array: order doesn't matter:
-	// return [enabled, setDarkTheme, removeTheme]
-	return {
-		darkMode: darkTheme,
-		setDarkTheme,
-		removeTheme,
-		DEFAULT_THEME_DARK
-		}
+  // Return object instead of array: order doesn't matter:
+  // return [enabled, setUseDarkTheme, removeTheme]
+  return {
+    useDarkTheme,
+    setUseDarkTheme,
+    removeTheme,
+    DEFAULT_THEME_DARK
+    }
 	}	// end function useDarkMode
 
 `;

@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "./logo.svg";
+
+import { contextTheme } from "./App";
 
 // import useDarkMode from "./hooks/useDarkMode";
 // import useTranslation from "./hooks/useTranslation";
@@ -7,15 +9,19 @@ import logo from "./logo.svg";
 
 export default function Header(
 	{
-		darkMode,
-		setDarkMode,
-		defaultDarkTheme,
 		language,
 		setLanguage,
 		t,
 		flags
 	})
 	{
+
+  let {
+    useDarkTheme,
+    setUseDarkTheme,
+    } = useContext(contextTheme);
+
+
 	// We don't use "removeTheme" but I want to leave it here, so...
 	// eslint-disable-next-line
 	// const [darkMode, setDarkMode, removeTheme] = useDarkMode(darkModeEnabled);
@@ -60,10 +66,10 @@ export default function Header(
 					</div>
 					<div
 						className="theme_selector"
-						onClick={() => setDarkMode( currMode => !currMode)}
+            onClick={() => setUseDarkTheme( currMode => !currMode)}
 						title="Click to switch theme"
 						>
-						{t("Theme")} {darkMode
+            {t("Theme")} {useDarkTheme
 							? <i className="fa-regular fa-sun" aria-hidden="true"></i>
 							: <i className="fa-regular fa-moon" aria-hidden="true"></i>
 							}
@@ -72,4 +78,4 @@ export default function Header(
 			</div>
 		</>
 		);
-	}	// end function
+  }	// end function

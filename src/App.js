@@ -1,6 +1,6 @@
 
 // import React, { Component } from "react";
-import React from "react";
+import React, { createContext } from "react";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -90,19 +90,26 @@ import useDarkMode from "./hooks/useDarkMode";
 import useTranslation from "./hooks/useTranslation";
 
 
+export const contextTheme = createContext();
+
+
 document.title = "React Hooks Notes";
 
 
 const App = function()
 	{
+/*
+  // This is a handy location, but some components should not
+  // scroll every re-render (HookUseDarkTheme, ...)
+  // So, each component gets own scroll
 	setTimeout( () => {
 		window.scrollTo({top:0, behavior:"smooth"});
 		}, 500);
-
+*/
 
   const {
-    darkMode,
-    setDarkTheme,
+    useDarkTheme,
+    setUseDarkTheme,
     removeTheme,
     DEFAULT_THEME_DARK
     } = useDarkMode()
@@ -120,11 +127,16 @@ const App = function()
 
 
 	return (
+    <contextTheme.Provider
+      value={{
+        useDarkTheme,
+        setUseDarkTheme,
+        removeTheme,
+        DEFAULT_THEME_DARK
+        }}
+        >
 			<div className="container">
 				<Header
-					darkMode={darkMode}
-					setDarkMode={setDarkTheme}
-					defaultDarkTheme={DEFAULT_THEME_DARK}
 					language={language}
 					setLanguage={setLanguage}
 					t={t}
@@ -329,10 +341,6 @@ const App = function()
 						<Route
 							path="/useDarkMode"
 							element={<HookUseDarkMode
-								darkMode={darkMode}
-								setDarkMode={setDarkTheme}
-								removeTheme={removeTheme}
-								defaultDarkTheme={DEFAULT_THEME_DARK}
 								/>}
 							/>
 						<Route
@@ -392,7 +400,8 @@ const App = function()
 						</Routes>
 					<Footer />
 				</BrowserRouter>
-		</div>
+      </div>
+    </contextTheme.Provider>
     );	// end return
   }	// end function App
 //}

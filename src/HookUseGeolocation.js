@@ -1,16 +1,17 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useContext } from 'react';
 
 import useGeolocation from "./hooks/useGeolocation";
 import useClipboard from "./hooks/useClipboard";
 import useSourceCode from "./hooks/useSourceCode";
 
+import { contextTranslate } from "./App.js";
 
-export default function HookUseGeolocation({
-		language,
-		t
-		})
+
+export default function HookUseGeolocation()
 	{
 	console.log("%cHookUseGeolocation", "color: red");
+
+  const { t } = useContext(contextTranslate);
 
 	const [addListener, setAddListener] = useState(false);
 

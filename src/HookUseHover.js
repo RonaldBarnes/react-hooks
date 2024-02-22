@@ -1,15 +1,18 @@
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useContext } from "react";
 
 import useHover from "./hooks/useHover";
 import useSourceCode from "./hooks/useSourceCode";
+
+import { contextTranslate } from "./App.js";
 
 
 export default function HookUseHover()
 	{
 	const elementRef = useRef();
-	const hovered = useHover(elementRef);
+  const { hovered, setHovered } = useHover(elementRef);
 
+  const { t } = useContext(contextTranslate);
 
 	// // Scroll to top after a delay for autoFocus:
 	// setTimeout( () =>
@@ -18,12 +21,15 @@ export default function HookUseHover()
 	// 	)
 	useEffect( () => {
 		window.scrollTo({top:0, behavior:"smooth"});
+    return () => {
+      setHovered(false);
+      }
 		},[])
 
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>HookUseHover</code></h2>
+			<h2>Hook <code>useHover</code></h2>
 			<p>
 				A hook for determining if an element is being hovered over.
 			</p>
@@ -36,13 +42,25 @@ export default function HookUseHover()
 			<p>Hover over the box to change its colour:</p>
 			<div
 				ref={elementRef}
+				id="refID"
 				style={{
+          display: "grid",
+          justifyContent: "center",
+          alignItems: "center",
+          marginInline: "auto",
 					width:"200px",
 					height:"200px",
-					margin:"auto",
-					backgroundColor: hovered ? "green" : "red"
+					backgroundColor: hovered ? "green" : "red",
+					borderWidth: "1rem",
+					borderStyle: "solid",
+          borderColor: hovered ? "orange" : "black"
 					}}
 				>
+          <p
+           style={{textAlign:"center"}}
+          >
+            Hovering?<br />{t(hovered.toString())}
+          </p>
 			</div>
 
 			<hr />

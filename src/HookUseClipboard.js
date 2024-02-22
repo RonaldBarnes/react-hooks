@@ -1,18 +1,19 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 
 import useClipboard from "./hooks/useClipboard";
 import useSourceCode from "./hooks/useSourceCode";
 
+import { contextTranslate } from "./App.js";
 
-export default function HookUseClipboard({
-		language,
-		t
-		})
+
+export default function HookUseClipboard()
 	{
 	console.log("%cHookUseClipboard", "color: red");
 
 	// Entry field for user's test data:
 	const [inputVal, setInputVal] = useState("");
+
+  const { t } = useContext(contextTranslate);
 
 	// Implement the useClipboard hook:
 	const [

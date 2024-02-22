@@ -2,6 +2,7 @@ import React,
 		{
 		useEffect,
 		useState,
+		useContext,
 		}
 	from 'react';
 
@@ -9,10 +10,14 @@ import useDebounce from "./hooks/useDebounce";
 import useTimeout from "./hooks/useTimeout";
 import useSourceCode from "./hooks/useSourceCode";
 
+import { contextTranslate } from "./App.js";
 
-export default function HookUseDebounce({t})
+
+export default function HookUseDebounce()
 	{
 	console.log("%cHookUseDebounce", "color: yellow");
+
+  const { t } = useContext(contextTranslate);
 
 	// Set counter to initial value:
 	const [count,setCount] = useState(5);

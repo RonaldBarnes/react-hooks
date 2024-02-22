@@ -1,25 +1,27 @@
 import React, { useContext } from "react";
 import logo from "./logo.svg";
 
-import { contextTheme } from "./App";
+import { contextTheme, contextTranslate } from "./App";
 
 // import useDarkMode from "./hooks/useDarkMode";
 // import useTranslation from "./hooks/useTranslation";
 
 
-export default function Header(
-	{
-		language,
-		setLanguage,
-		t,
-		flags
-	})
+export default function Header()
 	{
 
   let {
     useDarkTheme,
     setUseDarkTheme,
     } = useContext(contextTheme);
+
+  const {
+    // eslint-disable-next-line
+    language,
+    setLanguage,
+    t,
+    flags
+    } = useContext(contextTranslate);
 
 
 	// We don't use "removeTheme" but I want to leave it here, so...

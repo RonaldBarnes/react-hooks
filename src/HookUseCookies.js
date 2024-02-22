@@ -1,18 +1,19 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 
 import useCookies from "./hooks/useCookies";
 
+import { contextTranslate } from "./App.js";
 
-export default function HookUseCookies({
-    language,
-    t
-    })
+
+export default function HookUseCookies()
 	{
 	console.log("%cHookUseCookies", "color: red");
 
 	// Entry field for user's test data:
 	const [cookieName, setCookieName] = useState("name");
 	const [cookieValue, setCookieValue] = useState("Ron");
+
+  const { t } = useContext(contextTranslate);
 
 	// const updateCookie = () => {
 	// 	console.log(`UPDATE: ${cookieName}`);

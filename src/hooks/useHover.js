@@ -10,5 +10,5 @@ export default function useHover(elementRef)
 	useEventListener("mouseover", () => setHovered(true), elementRef.current);
 	useEventListener("mouseout", () => setHovered(false), elementRef.current);
 
-	return hovered;
+  return { hovered, setHovered };
 	}

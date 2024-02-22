@@ -1,11 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 
 import useToggle from "./hooks/useToggle";
 import useSourceCode from "./hooks/useSourceCode";
 
-export default function HookUseToggle({language, t})
+import { contextTranslate } from "./App.js";
+
+
+export default function HookUseToggle()
 	{
 	console.log("%cHookUseToggle", "color: yellow");
+
+  const { t, language } = useContext(contextTranslate);
 
 	const [value,toggleValue] = useToggle(false);
 	const [checked1,toggleChecked1] = useToggle(false);

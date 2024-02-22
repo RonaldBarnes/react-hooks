@@ -1,15 +1,16 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 
 import useOnScreen from "./hooks/useOnScreen";
 import useSourceCode from "./hooks/useSourceCode";
 
+import { contextTranslate } from "./App.js";
 
-export default function HookUseOnScreen({
-		language,
-		t
-		})
+
+export default function HookUseOnScreen()
 	{
 	console.log("%cHookUseOnScreen", "color: red");
+
+  const { t } = useContext(contextTranslate);
 
 	const header2Ref = useRef();
 

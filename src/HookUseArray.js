@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 
 import useArray from "./hooks/useArray";
 import useSourceCode from "./hooks/useSourceCode";
+
+import { contextTranslate } from "./App.js";
 
 
 export default function HookUseArray()
@@ -21,6 +23,7 @@ export default function HookUseArray()
 		reset,
 		} = useArray(initialArray);
 
+  const {t} = useContext(contextTranslate);
 
 	useEffect( () => {
 		// Scroll to top after a delay for autoFocus:
@@ -56,7 +59,7 @@ export default function HookUseArray()
 				type="button"
 				onClick={() => push(7)}
 				autoFocus
-				>Add 7
+        >{t("Add")} 7
 			</button>
 			<button
 				type="button"
@@ -81,12 +84,12 @@ export default function HookUseArray()
 			<button
 				type="button"
 				onClick={clear}
-				>Clear
+        >{t("Clear")}
 			</button>
 			<button
 				type="button"
 				onClick={() => set(initialArray)}>
-				Reset
+        {t("Reset")}
 			</button>
 			<Code />
 		</div>

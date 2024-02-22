@@ -69,7 +69,7 @@ export default function useTranslation()
 		}
 
 
-	return { 
+  return {
 		language,
 		setLanguage,
 		fallbackLanguage,

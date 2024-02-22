@@ -1,18 +1,17 @@
 
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 
 import useStateWithHistory from "./hooks/useStateWithHistory";
 import useSourceCode from "./hooks/useSourceCode";
 
+import { contextTranslate } from "./App.js";
 
-export default function HookUseStateWithHistory(
-		{
-		language,
-		t,
-		}
-	)
+
+export default function HookUseStateWithHistory()
 	{
 	// console.log("%cHookUseStateWithHistory", "color: red");
+
+  const { t } = useContext(contextTranslate);
 
 	const [
 		counter,

@@ -91,6 +91,7 @@ import useTranslation from "./hooks/useTranslation";
 
 
 export const contextTheme = createContext();
+export const contextTranslate = createContext(null);
 
 
 document.title = "React Hooks Notes";
@@ -127,6 +128,16 @@ const App = function()
 
 
 	return (
+    <contextTranslate.Provider
+      value={{
+        language,
+        setLanguage,
+        fallbackLanguage,
+        setFallbackLanguage,
+        t,
+        flags
+        }}
+      >
     <contextTheme.Provider
       value={{
         useDarkTheme,
@@ -136,12 +147,7 @@ const App = function()
         }}
         >
 			<div className="container">
-				<Header
-					language={language}
-					setLanguage={setLanguage}
-					t={t}
-					flags={flags}
-					/>
+        <Header />
 				<BrowserRouter>
 					<Sidebar />
 					<Routes>
@@ -247,10 +253,7 @@ const App = function()
 
 						<Route
 							path="/useToggle"
-							element={<HookUseToggle
-								language={language}
-								t={t}
-								/>}
+              element={<HookUseToggle />}
 							/>
 						<Route
 							path="/useTimeout"
@@ -258,7 +261,7 @@ const App = function()
 							/>
 						<Route
 							path="/useDebounce"
-							element={<HookUseDebounce t={t} />}
+              element={<HookUseDebounce />}
 							/>
 						<Route
 							path="/useUpdateEffect"
@@ -275,10 +278,7 @@ const App = function()
 							/>
 						<Route
 							path="/useStateWithHistory"
-							element={<HookUseStateWithHistory
-								language={language}
-								t={t}
-								/>}
+              element={<HookUseStateWithHistory />}
 							/>
 						<Route
 							path="/useStorage"
@@ -306,10 +306,7 @@ const App = function()
 							/>
 						<Route
 							path="/useOnScreen"
-							element={<HookUseOnScreen
-								language={language}
-								t={t}
-								/>}
+              element={<HookUseOnScreen />}
 							/>
 						<Route
 							path="/useMediaQuery"
@@ -317,10 +314,7 @@ const App = function()
 							/>
 						<Route
 							path="/useGeolocation"
-							element={<HookUseGeolocation
-								language={language}
-								t={t}
-								/>}
+              element={<HookUseGeolocation />}
 							/>
 						<Route
 							path="/useStateWithValidation"
@@ -345,28 +339,15 @@ const App = function()
 							/>
 						<Route
 							path="/useClipboard"
-							element={<HookUseClipboard
-								language={language}
-								t={t}
-								/>}
+              element={<HookUseClipboard />}
 							/>
 						<Route
 							path="/useCookies"
-							element={<HookUseCookies
-								language={language}
-								t={t}
-								/>}
+              element={<HookUseCookies />}
 							/>
 						<Route
 							path="/useTranslation"
-							element={<HookUseTranslation
-								language={language}
-								setLanguage={setLanguage}
-								fallbackLanguage={fallbackLanguage}
-								setFallbackLanguage={setFallbackLanguage}
-								t={t}
-								flags={flags}
-								/>}
+              element={<HookUseTranslation />}
 							/>
 
 						<Route
@@ -402,6 +383,7 @@ const App = function()
 				</BrowserRouter>
       </div>
     </contextTheme.Provider>
+    </contextTranslate.Provider>
     );	// end return
   }	// end function App
 //}

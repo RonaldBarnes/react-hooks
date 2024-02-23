@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 
 import useLongPress from "./hooks/useLongPress";
 import useSourceCode from "./hooks/useSourceCode";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseLongPress()
@@ -10,9 +11,14 @@ export default function HookUseLongPress()
 	const elementRef = useRef();
 	const PRESS_TIME_LENGTH = 1500;
 
-	useEffect( () => {
-		window.scrollTo({top:0, behavior:"smooth"});
-		},[])
+
+  // Scroll to top after a delay:
+  useEffect( () => {
+    setTimeout( () =>
+      window.scrollTo({top:0, behavior:"smooth"}),
+      500
+      )
+    }, [])
 
 	useLongPress(
 		elementRef,
@@ -23,7 +29,7 @@ export default function HookUseLongPress()
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>HookUseLongPress</code></h2>
+      <PageTitle hookName="useLongPress" />
 			<p>
 				Trigger an event if an element has been long-pressed (for {PRESS_TIME_LENGTH}ms).
 			</p>

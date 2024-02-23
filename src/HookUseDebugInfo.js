@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import useDebugInfo from "./hooks/useDebugInfo";
 import useToggle from "./hooks/useToggle";
 import useSourceCode from "./hooks/useSourceCode";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseDebugInfo()
@@ -11,18 +12,19 @@ export default function HookUseDebugInfo()
 	const [value, toggleValue] = useToggle(false);
 	const [count, setCount] = useState(0);
 
-	useEffect( () => {
-		// Scroll to top after a delay for autoFocus:
-		setTimeout( () =>
-			window.scrollTo({top:0, behavior:"smooth"}),
-			500
-			);
-		},[])
+
+  // Scroll to top after a delay:
+  useEffect( () => {
+    setTimeout( () =>
+      window.scrollTo({top:0, behavior:"smooth"}),
+      500
+      )
+    }, [])
 
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>HookUseDebugInfo</code></h2>
+      <PageTitle hookName="useDebugInfo" />
 			<p>This hook provides a ton of debugging info during development.</p>
 			<p>
 				Likely the console log is where one would look at the info

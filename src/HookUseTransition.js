@@ -9,6 +9,7 @@ import React,
 
 import { Link, Outlet } from "react-router-dom";
 // import HookUseTransition2 from "./HookUseTransition2";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseTransition()
@@ -26,7 +27,7 @@ export default function HookUseTransition()
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>useTransition</code></h2>
+      <PageTitle hookName="useTransition" />
 			<blockquote>
 				<h3>
 					<a href="https://react.dev/reference/react/useTransition"

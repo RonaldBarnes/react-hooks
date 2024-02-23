@@ -94,8 +94,6 @@ export const contextTheme = createContext();
 export const contextTranslate = createContext(null);
 
 
-document.title = "React Hooks Notes";
-
 
 const App = function()
 	{

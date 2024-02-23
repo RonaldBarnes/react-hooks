@@ -2,19 +2,23 @@
 import React, { useState, useMemo, useEffect } from "react";
 
 import useSourceCode from "./hooks/useSourceCode";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseMemo()
 	{
-	useEffect( () => {
-		window.scrollTo({top:0, behavior:"smooth"});
-		},[])
+  // Scroll to top after a delay:
+  useEffect( () => {
+    setTimeout( () =>
+      window.scrollTo({top:0, behavior:"smooth"}),
+      500
+      )
+    }, [])
+
 
 	return (
 		<div className="hooks">
-			<h2>
-				Hook useMemo
-			</h2>
+      <PageTitle hookName="useMemo" />
 			<blockquote>
 				<h3>
 					<a href="https://react.dev/reference/react/useMemo"

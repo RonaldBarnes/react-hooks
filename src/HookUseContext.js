@@ -1,8 +1,9 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, Outlet } from "react-router-dom";
 
 import useSourceCode from "./hooks/useSourceCode";
+import PageTitle from "./PageTitle";
 
 /*
 // These are now imported in App.js and referenced inside the Routes:
@@ -22,12 +23,13 @@ export default function HookUseContext()
 
 	// const [scrolled,setScrolled] = useState(false);
 
-	// useEffect( () => {
-//		setScrolled( curr => !curr)
-		setTimeout( () => {
-			window.scrollTo({top:0, behavior:"smooth"});
-			}, 250)
-		// });
+  // Scroll to top after a delay:
+  useEffect( () => {
+    setTimeout( () =>
+      window.scrollTo({top:0, behavior:"smooth"}),
+      500
+      )
+    }, [])
 
 /*
 	const [darkTheme, setDarkTheme] = useState(false);
@@ -48,9 +50,7 @@ export default function HookUseContext()
 
 	return(
 		<div className="hooks">
-			<h2>
-				Hook <code>UseContext</code>
-			</h2>
+      <PageTitle hookName="useContext" />
 			<blockquote>
 				<h3>
 					<a href="https://react.dev/reference/react/useContext"

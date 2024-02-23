@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import useEffectOnce from "./hooks/useEffectOnce";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseEffectOnce()
@@ -9,6 +10,7 @@ export default function HookUseEffectOnce()
 
 	const [count, setCount] = useState(0);
 
+
 	useEffectOnce( () =>
 		{
 		console.log(`First time: ${count}`);
@@ -16,13 +18,13 @@ export default function HookUseEffectOnce()
 		return;
 		});
 
-	useEffectOnce( () => {
-		// Scroll to top after a delay for autoFocus:
-		setTimeout( () =>
-			window.scrollTo({top:0, behavior:"smooth"}),
-			500
-			)
-		},[])
+  // Scroll to top after a delay:
+  useEffectOnce( () => {
+    setTimeout( () =>
+      window.scrollTo({top:0, behavior:"smooth"}),
+      500
+      )
+    }, [])
 
 	// useEffect( () =>
 	// 	{
@@ -36,7 +38,7 @@ export default function HookUseEffectOnce()
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>UseEffectOnce</code></h2>
+      <PageTitle hookName="useEffectOnce" />
 			<p>
 				A <code>useEffect</code> implementation that only runs <b>once</b>, despite
 								state changing counter (hence a page re-render) each button click.

@@ -5,6 +5,7 @@ import useClipboard from "./hooks/useClipboard";
 import useSourceCode from "./hooks/useSourceCode";
 
 import { contextTranslate } from "./App.js";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseGeolocation()
@@ -36,7 +37,7 @@ export default function HookUseGeolocation()
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>UseGeolocation</code></h2>
+      <PageTitle hookName="useGeolocation" />
 			<p>
 				Basic custom hooks that can be incorporated into a developer's toolkit.
 			</p>

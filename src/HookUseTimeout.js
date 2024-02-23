@@ -2,7 +2,7 @@ import React,
 		{
 		// useCallback,
 		// useEffect,
-		// useRef,
+    useContext,
 		useState,
 		}
 	from 'react';
@@ -10,6 +10,9 @@ import React,
 import useTimeout from "./hooks/useTimeout";
 import useEffectOnce from "./hooks/useEffectOnce";
 import useSourceCode from "./hooks/useSourceCode";
+
+import { contextTranslate } from "./App.js";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseTimeout()
@@ -22,6 +25,8 @@ export default function HookUseTimeout()
 	const [restart, clear] = useTimeout( () =>
 		timerUpdate( count )
 		, 10);
+
+  const { t } = useContext(contextTranslate);
 
 	// For manual changes to value:
 	function handleChange(e)
@@ -55,7 +60,7 @@ export default function HookUseTimeout()
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>UseTimeout</code></h2>
+      <PageTitle hookName="useTimeout" />
 			<p>
 				Basic custom hooks that can be incorporated into a developer's toolkit.
 			</p>
@@ -86,18 +91,18 @@ export default function HookUseTimeout()
 					type="button"
 					onClick={() => setCount( c => parseFloat(c) + 1)}
 					>
-					Add 1.00
+					{t("Add")} 1.00
 				</button>
 				<button
 					type="button"
 					onClick={clear}
 					autoFocus
-					>Stop Timer
+					>{t("Stop")} Timer
 				</button>
 				<button
 					type="button"
 					onClick={restart}
-					>Restart Timer
+					>{t("Restart")} Timer
 				</button>
 			</p>
 			<Code />

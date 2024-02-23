@@ -1,6 +1,6 @@
 
 import React, { useState, useRef, useEffect } from "react";
-
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseRef()
@@ -8,11 +8,14 @@ export default function HookUseRef()
 	const [counter, setCounter] = useState(0);
 	const renderCounter = useRef(0);
 
-	useEffect( () => {
-		setTimeout( () => {
-			window.scrollTo({top:0, behavior:"smooth"});
-			}, 500)
-		},[])
+  // Scroll to top after a delay:
+  useEffect( () => {
+    setTimeout( () =>
+      window.scrollTo({top:0, behavior:"smooth"}),
+      500
+      )
+    }, [])
+
 
 	function updateCounter(value)
 		{
@@ -44,9 +47,7 @@ export default function HookUseRef()
 
 	return (
 		<div className="hooks">
-			<h2>
-				Hook useRef
-			</h2>
+      <PageTitle hookName="useRef" />
 			<blockquote>
 				<h3>
 					<a href="https://react.dev/reference/react/useRef"

@@ -1,6 +1,7 @@
 
-
 import React, { useState, useEffect } from 'react';
+import PageTitle from "./PageTitle";
+
 
 export default function HookUseEffect()
 	{
@@ -36,14 +37,18 @@ export default function HookUseEffect()
 			}
 		}, [resourceType]);
 
-	// Wrap scroll-to-top inside useEffect so it only runs ONCE, not each button click:
-	useEffect( () => {window.scrollTo({top:0, behavior:"smooth"})}, []);
+  // Scroll to top after a delay:
+  useEffect( () => {
+    setTimeout( () =>
+      window.scrollTo({top:0, behavior:"smooth"}),
+      500
+      )
+    }, [])
+
 
 	return(
 		<div className="hooks">
-			<h2>
-				Hook <code>useEffect</code>
-			</h2>
+      <PageTitle hookName="useEffect" />
 			<blockquote>
 				<h3>
 					<a href="https://react.dev/reference/react/useEffect"

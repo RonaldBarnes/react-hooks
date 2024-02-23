@@ -4,6 +4,8 @@ import React, { useEffect, useContext } from 'react';
 import useSourceCode from "./hooks/useSourceCode";
 
 import { contextTheme } from "./App.js";
+import PageTitle from "./PageTitle";
+
 
 // Now this component takes props from App.js to sync the theme setting
 // between this and the Header:
@@ -18,6 +20,7 @@ export default function HookUseDarkMode()
 
   console.log(`%cHookUseDarkMode useDarkTheme: ${useDarkTheme.toString()}`, "color: red");
 
+
 //	const [darkMode, setDarkMode] = useDarkMode();
 
 	useEffect( () => {
@@ -28,7 +31,7 @@ export default function HookUseDarkMode()
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>UseDarkMode</code></h2>
+      <PageTitle hookName="useDarkMode" />
 			<p>
 				This hook will probe browser settings for
 				"<code>prefers-color-scheme: dark</code>", and set theme appropriately.

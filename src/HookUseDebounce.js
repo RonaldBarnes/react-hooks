@@ -11,6 +11,7 @@ import useTimeout from "./hooks/useTimeout";
 import useSourceCode from "./hooks/useSourceCode";
 
 import { contextTranslate } from "./App.js";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseDebounce()
@@ -70,7 +71,7 @@ export default function HookUseDebounce()
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>UseDebounce</code></h2>
+      <PageTitle hookName="useDebounce" />
 			<p>
 				Basic custom hooks that can be incorporated into a developer's toolkit.
 			</p>

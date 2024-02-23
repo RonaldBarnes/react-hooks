@@ -6,6 +6,7 @@ import React,
 
 import useLocalStorage from "./hooks/useLocalStorage";
 import useSourceCode from "./hooks/useSourceCode";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseLocalStorage()
@@ -14,6 +15,7 @@ export default function HookUseLocalStorage()
 
 	const [value, setValue, removeValue] = useLocalStorage("data");
 
+
 	useEffect( () => {
 		window.scrollTo({top:0, behavior:"smooth"});
 		},[]);
@@ -21,7 +23,7 @@ export default function HookUseLocalStorage()
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>useLocalStorage</code></h2>
+      <PageTitle hookName="useLocalStorage" />
 			<p>
 				This will be a drop-in replacement for <code>useState</code>
 				that uses the browser's local storage.

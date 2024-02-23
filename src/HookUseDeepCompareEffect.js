@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { isEqual } from "lodash";
 import "./Hooks.css";
+import PageTitle from "./PageTitle";
+
 
 export default function HookUseDeepCompareEffect()
 	{
@@ -13,6 +15,7 @@ export default function HookUseDeepCompareEffect()
 
 	// This object will be re-created each render:
 	const person = { name: "Ron", age: age};
+
 
 	useEffect( () => {
 //console.table(useEffectCountRef.current);
@@ -34,18 +37,18 @@ export default function HookUseDeepCompareEffect()
 		[person]
 		);
 
-	useEffect( () => {
-		// Scroll to top after a delay for autoFocus:
-		setTimeout( () =>
-			window.scrollTo({top:0, behavior:"smooth"}),
-			500
-			);
-		}, []);
+  // Scroll to top after a delay:
+  useEffect( () => {
+    setTimeout( () =>
+      window.scrollTo({top:0, behavior:"smooth"}),
+      500
+      )
+    }, [])
 
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>UseDeepCompareEffect</code></h2>
+      <PageTitle hookName="useDeepCompareEffect" />
 			<p>
 				Basic custom hooks that can be incorporated into a developer's toolkit.
 			</p>

@@ -5,6 +5,7 @@ import useStateWithHistory from "./hooks/useStateWithHistory";
 import useSourceCode from "./hooks/useSourceCode";
 
 import { contextTranslate } from "./App.js";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseStateWithHistory()
@@ -51,18 +52,18 @@ export default function HookUseStateWithHistory()
 		"Moyun",
 		];
 
-	useEffect( () => {
-		// Scroll to top after a delay for autoFocus:
-		setTimeout( () =>
-			window.scrollTo({top:0, behavior:"smooth"}),
-			500
-			);
-		}, []);
+  // Scroll to top after a delay:
+  useEffect( () => {
+    setTimeout( () =>
+      window.scrollTo({top:0, behavior:"smooth"}),
+      500
+      )
+    }, [])
 
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>useStateWithHistory</code></h2>
+      <PageTitle hookName="useStateWithHistory" />
 			<p>
 				The <code>useStateWithHistory</code> hook will save state changes
 				to an array for navigating forward & back through changes.

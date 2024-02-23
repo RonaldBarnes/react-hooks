@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
 import useOnlineStatus from "./hooks/useOnlineStatus";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseOnlineStatus()
@@ -20,7 +21,7 @@ export default function HookUseOnlineStatus()
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>useOnlineStatus</code></h2>
+      <PageTitle hookName="useOnlineStatus" />
 			<p>
 				This hook will give the browser an indication of whether online or not.
 				Not entirely reliable as there are many reasons connectivity may be lost.

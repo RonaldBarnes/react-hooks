@@ -1,6 +1,7 @@
 
-
 import React, { useEffect } from 'react';
+// import PageTitle from "./PageTitle";
+
 
 export default function Home()
 	{
@@ -12,11 +13,13 @@ export default function Home()
 			})
 		});
 
+  const pageTitle = process.env.REACT_APP_APP_NAME || "React Hooks";
+  document.title = `${pageTitle}: Home`
+
+
 	return(
 		<div className="hooks">
-			<h2>
-				Home
-			</h2>
+      <h2>React Hooks Home Page</h2>
 			<blockquote>
 				<a href="https://legacy.reactjs.org/docs/hooks-rules.html"
 					target="ReactHooks"

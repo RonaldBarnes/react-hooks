@@ -3,6 +3,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import useCookies from "./hooks/useCookies";
 
 import { contextTranslate } from "./App.js";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseCookies()
@@ -68,7 +69,7 @@ export default function HookUseCookies()
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>useClipboard</code></h2>
+      <PageTitle hookName="useCookies" />
 			<p>
 				This hook will give the browser easy ability to manipulate cookies.
 			</p>

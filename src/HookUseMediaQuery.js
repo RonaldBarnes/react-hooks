@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import useMediaQuery from "./hooks/useMediaQuery";
 import useSourceCode from "./hooks/useSourceCode";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseMediaQuery()
@@ -10,6 +11,7 @@ export default function HookUseMediaQuery()
 	const WIDTH = "1100px";
 	const isLandscape = useMediaQuery(`(orientation: landscape)`);
 
+
 	useEffect( () => {
 		window.scrollTo({top:0, behavior:"smooth"});
 		},[])
@@ -17,7 +19,7 @@ export default function HookUseMediaQuery()
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>UseMediaQuery</code></h2>
+      <PageTitle hookName="useMediaQuery" />
 			<p>
 				Monitor media query on window.
 			</p>

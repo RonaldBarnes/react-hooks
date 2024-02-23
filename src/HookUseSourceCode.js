@@ -2,18 +2,23 @@
 import React, { useEffect } from "react";
 
 import useSourceCode from "./hooks/useSourceCode";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseSourceCode()
 	{
 	useEffect( () => {
-		window.scrollTo({top:0, behavior:"smooth"});
-		},[])
+		// Scroll to top after a delay:
+		setTimeout( () =>
+			window.scrollTo({top:0, behavior:"smooth"}),
+			500
+			)
+		}, [])
 
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>HookUseSourceCode</code></h2>
+      <PageTitle hookName="useSourceCode" />
 			<p>
 				This hook was not part of the course, but something I came
 				up with myself to show nicely-formatted source code on

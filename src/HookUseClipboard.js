@@ -4,6 +4,7 @@ import useClipboard from "./hooks/useClipboard";
 import useSourceCode from "./hooks/useSourceCode";
 
 import { contextTranslate } from "./App.js";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseClipboard()
@@ -14,6 +15,7 @@ export default function HookUseClipboard()
 	const [inputVal, setInputVal] = useState("");
 
   const { t } = useContext(contextTranslate);
+
 
 	// Implement the useClipboard hook:
 	const [
@@ -52,7 +54,7 @@ export default function HookUseClipboard()
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>useClipboard</code></h2>
+      <PageTitle hookName="useClipboard" />
 			<p>
 				This hook will give the browser access to read & write clipboard contents.
 			</p>

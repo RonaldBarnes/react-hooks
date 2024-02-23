@@ -1,9 +1,11 @@
 import React,
 		{
+    useEffect,
 		useId,
 		}
 	from 'react';
 
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseId()
@@ -11,16 +13,18 @@ export default function HookUseId()
 	console.log("%cHookUseId", "color: yellow");
 
 
-	// Focus on "Open" button after a delay for autoFocus:
-	setTimeout( () =>
-		window.scrollTo({top:0, behavior:"smooth"}),
-		500
-		)
+  // Scroll to top after a delay:
+  useEffect( () => {
+    setTimeout( () =>
+      window.scrollTo({top:0, behavior:"smooth"}),
+      500
+      )
+    }, [])
 
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>useId</code></h2>
+      <PageTitle hookName="useId" />
 			<blockquote>
 				<h3>
 					<a href="https://react.dev/reference/react/useId"
@@ -29,7 +33,7 @@ export default function HookUseId()
 					</a>
 				</h3>
 				<p>
-					<code>useId</code> is a React Hook that lets you
+					<code>useId</code> is a React Hook that lets you create random IDs
 				</p>
 			</blockquote>
 

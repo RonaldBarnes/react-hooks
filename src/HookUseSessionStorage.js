@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import useSessionStorage from "./hooks/useSessionStorage";
 import useSourceCode from "./hooks/useSourceCode";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseSessionStorage()
@@ -18,7 +19,7 @@ export default function HookUseSessionStorage()
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>useSessionStorage</code></h2>
+      <PageTitle hookName="useSessionStorage" />
 			<p>
 				This will be a drop-in replacement for <code>useState</code>
 				that uses the browser's <strike>local</strike> session storage.

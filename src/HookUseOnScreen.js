@@ -4,6 +4,7 @@ import useOnScreen from "./hooks/useOnScreen";
 import useSourceCode from "./hooks/useSourceCode";
 
 import { contextTranslate } from "./App.js";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseOnScreen()
@@ -17,6 +18,7 @@ export default function HookUseOnScreen()
 	const visibleAlmost = useOnScreen( header2Ref, { threshold:"1.0" } );
 	const visible = useOnScreen( header2Ref, { rootMargin:"-250px" } );
 
+
 	// Use autoFocus instead:
 	// useEffect( () => document.querySelector("input").focus());
 
@@ -27,7 +29,7 @@ export default function HookUseOnScreen()
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>UseOnScreen</code></h2>
+      <PageTitle hookName="useOnScreen" />
 			<p>
 				Basic custom hooks that can be incorporated into a developer's toolkit.
 			</p>

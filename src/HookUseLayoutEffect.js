@@ -8,6 +8,7 @@ import React,
 		}
 	from "react";
 import { Link } from 'react-router-dom';
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseLayoutEffect()
@@ -26,9 +27,7 @@ export default function HookUseLayoutEffect()
 
 	return(
 		<div className="hooks">
-			<h2>
-				Hook <code>useLayoutEffect</code>
-			</h2>
+      <PageTitle hookName="useLayoutEffect" />
 			<blockquote>
 				<h3>
 					<a href="https://react.dev/reference/react/useLayoutEffect"

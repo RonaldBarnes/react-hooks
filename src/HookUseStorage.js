@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 
 import { useLocalStorage, useSessionStorage } from "./hooks/useStorage";
 import useSourceCode from "./hooks/useSourceCode";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseStorage()
@@ -22,9 +23,7 @@ export default function HookUseStorage()
 
 	return (
 		<div className="hooks">
-			<h2>
-				Hook useStorage
-			</h2>
+      <PageTitle hookName="useStorage" />
 			<p>
 				The <code>useStorage</code> hook integrates <b>both</b> sessionStorage
 				and localStorage into a single hook file.

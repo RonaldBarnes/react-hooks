@@ -7,6 +7,7 @@ import React,
 
 import usePrevious from "./hooks/usePrevious";
 import useSourceCode from "./hooks/useSourceCode";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUsePrevious()
@@ -28,7 +29,7 @@ export default function HookUsePrevious()
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>usePrevious  </code></h2>
+      <PageTitle hookName="usePrevious" />
 			<p>
 				The <code>usePrevious</code> hook will save previous state
 				for a single item.

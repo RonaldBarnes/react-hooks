@@ -4,6 +4,7 @@ import useArray from "./hooks/useArray";
 import useSourceCode from "./hooks/useSourceCode";
 
 import { contextTranslate } from "./App.js";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseArray()
@@ -25,18 +26,19 @@ export default function HookUseArray()
 
   const {t} = useContext(contextTranslate);
 
+
 	useEffect( () => {
-		// Scroll to top after a delay for autoFocus:
+		// Scroll to top after a delay:
 		setTimeout( () =>
 			window.scrollTo({top:0, behavior:"smooth"}),
 			500
-			);
+			)
 		}, [])
 
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>useArray</code></h2>
+      <PageTitle hookName="useArray" />
 			<p>
 				Basic custom hooks that can be incorporated into
 				a developer's toolkit.

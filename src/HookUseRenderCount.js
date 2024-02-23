@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import useRenderCount from "./hooks/useRenderCount";
 import useToggle from "./hooks/useToggle";
 import useSourceCode from "./hooks/useSourceCode";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseRenderCount()
@@ -22,7 +23,7 @@ export default function HookUseRenderCount()
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>useRenderCount</code></h2>
+      <PageTitle hookName="useRenderCount" />
 			<p>Very simple render counter.</p>
 			<hr />
 

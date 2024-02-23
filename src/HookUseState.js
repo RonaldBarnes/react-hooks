@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, Outlet } from "react-router-dom";
+import PageTitle from "./PageTitle";
 /*
 import { useParams, Link, Outlet } from "react-router-dom";
 import HookUseStateMultiUpdates from './HookUseStateMultiUpdate';
@@ -23,9 +24,15 @@ export default function HookUseState()
 			: false
 */
 
-	useEffect( () => {
-		window.scrollTo({top:0, behavior:"smooth"});
-		},[])
+
+  // Scroll to top after a delay:
+  useEffect( () => {
+    setTimeout( () =>
+      window.scrollTo({top:0, behavior:"smooth"}),
+      500
+      )
+    }, [])
+
 
 //	output = output ? output :
 	const output =
@@ -55,7 +62,7 @@ export default function HookUseState()
 
 	return (
 		<div className="hooks">
-			<h2>Hook useState</h2>
+      <PageTitle hookName="useState" />
 			<blockquote>
 				<h3>
 					<a href="https://react.dev/reference/react/useState"

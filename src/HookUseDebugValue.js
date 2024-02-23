@@ -7,6 +7,7 @@ import React,
 		}
 	from "react";
 
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseDebugValue()
@@ -23,20 +24,18 @@ export default function HookUseDebugValue()
 		},[]);
 
 
-	useEffect( () => {
-		// Focus on "Open" button after a delay for autoFocus:
-		setTimeout( () =>
-			window.scrollTo({top:0, behavior:"smooth"}),
-			500
-			)
-		}, [])
+  // Scroll to top after a delay:
+  useEffect( () => {
+    setTimeout( () =>
+      window.scrollTo({top:0, behavior:"smooth"}),
+      500
+      )
+    }, [])
 
 
 	return(
 		<div className="hooks">
-			<h2>
-				Hook <code>useDebugValue</code>
-			</h2>
+      <PageTitle hookName="useDebugValue" />
 			<blockquote>
 				<h3>
 					<a href="https://react.dev/reference/react/useDebugValue"

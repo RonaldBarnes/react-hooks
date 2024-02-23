@@ -3,21 +3,23 @@ import React, { useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
 // import HookReducerCounter from "./HookUseReducerCounter";
 // import HookReducerTodos from "./HookUseReducerTodos";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseReducer()
 	{
-	// Scroll to top after a delay for autoFocus:
-	useEffect( () => {
-		window.scrollTo({top:0, behavior:"smooth"})
-		}, [])
+  // Scroll to top after a delay:
+  useEffect( () => {
+    setTimeout( () =>
+      window.scrollTo({top:0, behavior:"smooth"}),
+      500
+      )
+    }, [])
 
 
 	return (
 		<div className="hooks">
-			<h2>
-				Hook useReducer
-			</h2>
+      <PageTitle hookName="useReducer" />
 			<blockquote>
 				<h3>
 					<a href="https://react.dev/reference/react/useReducer"

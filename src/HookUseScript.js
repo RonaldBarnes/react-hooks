@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import useScript from "./hooks/useScript";
 import useSourceCode from "./hooks/useSourceCode";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseScript()
@@ -17,7 +18,7 @@ export default function HookUseScript()
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>useScript</code></h2>
+      <PageTitle hookName="useScript" />
 			<p>
 				Load a script / external JavaScript into a page.
 			</p>

@@ -6,6 +6,7 @@ import useSourceCode from "./hooks/useSourceCode";
 import useEffectOnce from "./hooks/useEffectOnce";
 
 import { contextTranslate } from "./App.js";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseTranslation()
@@ -35,7 +36,7 @@ export default function HookUseTranslation()
 
 	return (
 		<div className="hooks">
-      <h2>Hook <code>useTranslation</code></h2>
+      <PageTitle hookName="useTranslation" />
 			<p>
 				The <code>useTranslation</code> hook can make
 				translations of buttons, menus, etc. simple

@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 
 import useSize from "./hooks/useSize";
 import useSourceCode from "./hooks/useSourceCode";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseSize()
@@ -22,7 +23,7 @@ export default function HookUseSize()
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>UseSize</code></h2>
+      <PageTitle hookName="useSize" />
 			<p>
 				A listener on an element.
 			</p>

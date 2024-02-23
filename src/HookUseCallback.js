@@ -1,18 +1,22 @@
 
 import React, { useState, useCallback, useEffect } from "react";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseCallback()
 	{
-	useEffect( () => {
-		window.scrollTo({top:0, behavior:"smooth"});
-		},[])
+  // Scroll to top after a delay:
+  useEffect( () => {
+    setTimeout( () =>
+      window.scrollTo({top:0, behavior:"smooth"}),
+      500
+      )
+    }, [])
+
 
 	return (
 		<div className="hooks">
-			<h2>
-				Hook useCallback
-			</h2>
+      <PageTitle hookName="useCallback" />
 			<blockquote>
 				<h3>
 					<a href="https://react.dev/reference/react/useCallback"

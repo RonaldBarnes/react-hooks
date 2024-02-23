@@ -9,6 +9,7 @@ import React,
 	from 'react';
 
 import useSourceCode from "./hooks/useSourceCode";
+import PageTitle from "./PageTitle";
 
 
 // Importing component FROM THIS FILE, so it can be wrapped in a
@@ -24,19 +25,18 @@ export default function HookUseImperativeHandle()
 	const [open,setOpen] = useState(false);
 	const modalRef = useRef()
 
-	useEffect( () => {
-		// Focus on "Open" button after a delay for autoFocus:
-		setTimeout( () =>
-			window.scrollTo({top:0, behavior:"smooth"}),
-			500
-			)
-		window.scrollTo({top:0, behavior:"smooth"});
-		}, [])
+  // Scroll to top after a delay:
+  useEffect( () => {
+    setTimeout( () =>
+      window.scrollTo({top:0, behavior:"smooth"}),
+      500
+      )
+    }, [])
 
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>useImperativeHandle</code></h2>
+      <PageTitle hookName="useImperativeHandle" />
 			<blockquote>
 				<h3>
 					<a href="https://react.dev/reference/react/useImperativeHandle"

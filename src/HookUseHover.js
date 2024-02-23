@@ -5,6 +5,7 @@ import useHover from "./hooks/useHover";
 import useSourceCode from "./hooks/useSourceCode";
 
 import { contextTranslate } from "./App.js";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseHover()
@@ -13,6 +14,7 @@ export default function HookUseHover()
   const { hovered, setHovered } = useHover(elementRef);
 
   const { t } = useContext(contextTranslate);
+
 
 	// // Scroll to top after a delay for autoFocus:
 	// setTimeout( () =>
@@ -29,7 +31,7 @@ export default function HookUseHover()
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>useHover</code></h2>
+      <PageTitle hookName="useHover" />
 			<p>
 				A hook for determining if an element is being hovered over.
 			</p>

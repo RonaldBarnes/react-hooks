@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import useAsync from "./hooks/useAsync";
 import useSourceCode from "./hooks/useSourceCode";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseAsync()
@@ -20,13 +21,14 @@ export default function HookUseAsync()
 			});	// end Promise
 		});	// end useAsync
 
+
 	useEffect( () => {
 		window.scrollTo({top:0, behavior:"smooth"});
 		},[])
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>UseAsync</code></h2>
+      <PageTitle hookName="useAsync" />
 			<p>
 				Basic custom hooks that can be incorporated into a developer's toolkit.
 			</p>
@@ -38,8 +40,8 @@ export default function HookUseAsync()
 
 			<div style={{fontSize:"2rem"}}>
 				<div>Loading: {loading.toString()}</div>
-				<div>{error}</div>
-				<div>{value}</div>
+				<div>Error: {error || "None"}</div>
+				<div>Success: {value}</div>
 			</div>
 			<Code />
 		</div>

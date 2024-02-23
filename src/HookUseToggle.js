@@ -4,6 +4,7 @@ import useToggle from "./hooks/useToggle";
 import useSourceCode from "./hooks/useSourceCode";
 
 import { contextTranslate } from "./App.js";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseToggle()
@@ -15,18 +16,20 @@ export default function HookUseToggle()
 	const [value,toggleValue] = useToggle(false);
 	const [checked1,toggleChecked1] = useToggle(false);
 
-	// Scroll to top after a delay for autoFocus:
-	useEffect( () => {
-		setTimeout( () =>
-			window.scrollTo({top:0, behavior:"smooth"}),
-			500
-			)}
-		,[])
+  // Scroll to top after a delay:
+  useEffect( () => {
+    setTimeout( () => {
+      window.scrollTo({top:0, behavior:"smooth"});
+      // Auto-focus on HTML element is immediate, screwing up smooth scroll:
+      // A timer (inside a timer...) to set focus fixes it...
+      setTimeout( () => document.querySelector("#autofocus").focus(), 500);
+      }, 500);
+    }, [])
 
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>useToggle</code></h2>
+      <PageTitle hookName="useToggle" />
 			<p>
 				Once the <code>useToggle</code> hook has been setup, we can re-use
 				it with ease by simply creating another call to it.
@@ -44,7 +47,7 @@ export default function HookUseToggle()
 				<button
 					type="button"
 					onClick={toggleValue}
-					autoFocus
+					id="autofocus"
 					>
 					{t("Toggle")}
 				</button>

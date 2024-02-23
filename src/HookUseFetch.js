@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useAsync from "./hooks/useAsync";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseFetch()
@@ -16,13 +17,14 @@ export default function HookUseFetch()
 
 	const JSON_INDENT = 2;
 
+
 	useEffect( () => {
 		window.scrollTo({top:0, behavior:"smooth"});
 		}, []);
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>UseFetch</code></h2>
+      <PageTitle hookName="useFetch" />
 			<p>
 				Basic custom hooks that can be incorporated into a developer's toolkit.
 			</p>

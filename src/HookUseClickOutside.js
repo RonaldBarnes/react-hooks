@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 
 import useClickOutside from "./hooks/useClickOutside";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseClickOutside()
@@ -30,7 +31,7 @@ export default function HookUseClickOutside()
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>UseClickOutside</code></h2>
+      <PageTitle hookName="useClickOutside" />
 			<p>
 				This hook will determine boundaries of what a Ref points to,
 				and run the callback if click is OUTSIDE of it.

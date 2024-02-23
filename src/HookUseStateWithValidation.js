@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import useStateWithValidation from "./hooks/useStateWithValidation";
 import useSourceCode from "./hooks/useSourceCode";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseStateWithValidation()
@@ -21,12 +22,12 @@ export default function HookUseStateWithValidation()
 			window.scrollTo({top:0, behavior:"smooth"}),
 			500
 			);
-		},[])
+		}, []);
 
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>UseStateWithValidation</code></h2>
+      <PageTitle hookName="useStateWithValidation" />
 			<p>
 				A form of <code>useState</code> that validates the variable stored in state.
 			</p>

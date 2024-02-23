@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import useEventListener from "./hooks/useEventListener";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseEventListener()
@@ -8,6 +9,7 @@ export default function HookUseEventListener()
 	console.log("%cHookUseEventListener", "color: red");
 
 	const [key, setKey] = useState("");
+
 
 	useEventListener( "keydown", e => {
 		setKey(e.key)
@@ -25,7 +27,7 @@ export default function HookUseEventListener()
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>UseEventListener</code></h2>
+      <PageTitle hookName="useEventListener" />
 			<p>
 				Basic custom hooks that can be incorporated into a developer's toolkit.
 			</p>

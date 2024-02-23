@@ -1,5 +1,6 @@
 
 import React, { useRef, useEffect, useState } from "react";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseUpdateEffect()
@@ -13,18 +14,20 @@ export default function HookUseUpdateEffect()
 		);
 
 
-	// Scroll to top after a delay for autoFocus:
-	useEffect( () => {
-		setTimeout( () =>
-			window.scrollTo({top:0, behavior:"smooth"}),
-			500
-			);
-		}, [])
+  // Scroll to top after a delay:
+  useEffect( () => {
+    setTimeout( () => {
+      window.scrollTo({top:0, behavior:"smooth"});
+      // Auto-focus on HTML element is immediate, screwing up smooth scroll:
+      // A timer (inside a timer...) to set focus fixes it...
+      setTimeout( () => document.querySelector("#autofocus").focus(), 500);
+      }, 500);
+    }, [])
 
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>useUpdateEffect </code></h2>
+      <PageTitle hookName="useUpdateEffect" />
 			<p>
 				<code>useEffect</code> runs on first mount and each re-render (unless
 				empty dependencies array used).
@@ -46,7 +49,8 @@ export default function HookUseUpdateEffect()
 				<button
 					type="button"
 					onClick={ () => setCounter(c => c + 1) }
-					autoFocus
+//					autoFocus
+					id="autofocus"
 					>
 						Increment
 					</button>

@@ -6,6 +6,8 @@ import React, {
 	// useEffect
 	} from "react";
 
+import PageTitle from "./PageTitle";
+
 
 
 export default function HookDeferredValue()
@@ -34,7 +36,7 @@ export default function HookDeferredValue()
 
 	return (
 		<div className="hooks">
-			<h2>Hook <code>useDeferredValue</code></h2>
+      <PageTitle hookName="useDeferredValue" />
 			<blockquote>
 				<a href="https://react.dev/reference/react/useDeferredValue"
 					target="ReactHooks"

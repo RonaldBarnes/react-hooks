@@ -45,7 +45,7 @@ export default function HookUseFetch()
 			{" "}
 			<button
 				type="button"
-				onClick={ () => setId( id => id + 1)}
+				onClick={ () => setId( id => parseInt(id) + 1)}
 				autoFocus>
 				Increment ID
 			</button>

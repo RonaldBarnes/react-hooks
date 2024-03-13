@@ -92,7 +92,7 @@ import useTranslation from "./hooks/useTranslation";
 
 export const contextTheme = createContext();
 export const contextTranslate = createContext(null);
-
+export const contextAppSettings = createContext(null);
 
 
 const App = function()
@@ -124,6 +124,10 @@ const App = function()
 		flags
 		} = useTranslation();
 
+  // Capture settings from package.json's `build` script for deployment to
+  // some path in the DocumentRoot of another web server:
+  const basePath = process.env.REACT_APP_RELATIVE_PATH || "";
+
 
 	return (
     <contextTranslate.Provider
@@ -144,9 +148,18 @@ const App = function()
         DEFAULT_THEME_DARK
         }}
         >
+    <contextAppSettings.Provider
+      value={{
+        basePath
+        }}
+      >
+
 			<div className="container">
         <Header />
-				<BrowserRouter>
+				<BrowserRouter
+          // REQUIRED for deployment to /some/path/:
+          basename={basePath}
+          >
 					<Sidebar />
 					<Routes>
 						<Route path="/" element={<Home />} />
@@ -380,6 +393,7 @@ const App = function()
 					<Footer />
 				</BrowserRouter>
       </div>
+    </contextAppSettings.Provider>
     </contextTheme.Provider>
     </contextTranslate.Provider>
     );	// end return

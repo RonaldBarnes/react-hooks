@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import logo from "./logo.svg";
 
-import { contextTheme, contextTranslate } from "./App";
+import { contextTheme, contextTranslate, contextAppSettings } from "./App";
 
 // import useDarkMode from "./hooks/useDarkMode";
 // import useTranslation from "./hooks/useTranslation";
@@ -23,6 +23,8 @@ export default function Header()
     flags
     } = useContext(contextTranslate);
 
+  // Capture deployment path derived from package.json's `build` in App.js:
+  const { basePath } = useContext(contextAppSettings);
 
 	// We don't use "removeTheme" but I want to leave it here, so...
 	// eslint-disable-next-line
@@ -54,11 +56,10 @@ export default function Header()
 				</div>
 				<div className="header_buttons">
 					<div>
-					{Object.keys(flags).map( (f, idx) => 
+          {Object.keys(flags).map( (f, idx) =>
 						<img
-							// src={flags[language]}
-							src={flags[f]}
-							alt="Language Flag"
+              src={basePath + flags[f]}
+              alt={t(f)}
 							className="flag"
 							title={`Set language to ${f}`}
 							onClick={() => setLanguage(f)}

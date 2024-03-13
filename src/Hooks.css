@@ -203,10 +203,11 @@ h4
 	to { transform: rotate(360deg); }
 	}
 
-img .flag
+img.flag
 	{
 	aspect-ratio: 1/1;
 	height: fit-content;
+  margin-inline: 0.5rem;
 	}
 
 .header_buttons
@@ -555,7 +556,12 @@ body.darkModeTheme * input[type="checkbox"]
 	background-color: var(--background-color);
 	color: var(--color);
 	}
-
+body.darkModeTheme * button:disabled,
+body.lightModeTheme * button:disabled
+  {
+  opacity: 0.75;
+  background-color: lightgray;
+  }
 body.darkModeTheme * a {
 	color: orange;
 	}

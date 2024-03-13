@@ -4,10 +4,12 @@ import React,
 		useDebugValue,
 		useState,
 		useEffect,
+    useContext,
 		}
 	from "react";
 
 import PageTitle from "./PageTitle";
+import { contextAppSettings } from "./App";
 
 
 export default function HookUseDebugValue()
@@ -17,6 +19,9 @@ export default function HookUseDebugValue()
 	const [fName, setFName] = useState("");
 //	const [lName, setLName] = useTempComponent("lName", "Ron");
 	const [lName, setLName] = useTempComponent("Enter a Last Name");
+
+  const { basePath } = useContext(contextAppSettings);
+
 
 	useEffect( () => {
 		// Focus on first input field:
@@ -77,7 +82,8 @@ export default function HookUseDebugValue()
 
 			<h4>The image below shows the Component tab of the dev tools</h4>
 			<p>
-				<img src="images/Screenshot_useDebugValue.png"
+        <img
+          src={ basePath + "/images/Screenshot_useDebugValue.png"}
 					alt="Hook useDebugValue screenshot"
 					className="screenshot"
 					/>

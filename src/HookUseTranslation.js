@@ -7,6 +7,7 @@ import useEffectOnce from "./hooks/useEffectOnce";
 
 import { contextTranslate } from "./App.js";
 import PageTitle from "./PageTitle";
+import { contextAppSettings } from "./App";
 
 
 export default function HookUseTranslation()
@@ -23,6 +24,8 @@ export default function HookUseTranslation()
     t,
     flags
   } = useContext(contextTranslate);
+
+  const { basePath } = useContext(contextAppSettings);
 
 
   useEffectOnce( () => {
@@ -59,9 +62,9 @@ export * as zh from "./zh.json";
 
 			<p style={{fontSize:"2rem", fontVariantCaps:"small-caps"}}>
 				{language} <img
-					src={flags[language]}
+          src={ basePath + flags[language]}
 					style={{verticalAlign:"bottom"}}
-					alt="Language Flag"
+          alt={ language + " Flag" }
 					/>
 			</p>
 
@@ -89,7 +92,7 @@ export * as zh from "./zh.json";
 					onClick={() => setLanguage("en")}
 					>
           {t("English")} {" "}
-          <img src="/images/canada.png"
+          <img src={ basePath + "/images/canada.png" }
             alt="Canada flag"
             style={{verticalAlign:"bottom"}}
             />
@@ -99,7 +102,7 @@ export * as zh from "./zh.json";
 					onClick={() => setLanguage("hk")}
 					>
           {t("Cantonese")} {" "}
-					<img src="/images/hong-kong.png"
+          <img src={ basePath + "/images/hong-kong.png" }
 						alt="Hong Kong flag"
 						style={{verticalAlign:"bottom"}}
 						/>

@@ -152,9 +152,16 @@ To enable pasting images, go to: <code>about:config</code> and set: <br />
 			</p>
 
 			<hr />
+
+			{(typeof(navigator.clipboard) === "undefined")
+				&& <h2>Requires https</h2>
+				|| <>
+				<h1>works</h1>
+</>}
+
 			<p>
 				<label htmlFor="input">
-					Enter some text to copy: {" "}
+					Enter some text to copy: &nbsp;
 				</label>
 				<input
 					type="text"
@@ -167,6 +174,7 @@ To enable pasting images, go to: <code>about:config</code> and set: <br />
 				<button
 					type="button"
 					onClick={() => copyTextToClipboard(inputVal)}
+					disabled={typeof(navigator.clipboard) === "undefined"}
 					>
 					{t("Copy to clipboard")}
 				</button>
@@ -175,6 +183,7 @@ To enable pasting images, go to: <code>about:config</code> and set: <br />
 				<button
 					type="button"
 					onClick={() => pasteTextFromClipboard()}
+					disabled={typeof(navigator.clipboard) === "undefined"}
 					>
 					{t("Paste clipboard")}: {t("text")}
 				</button>
@@ -183,6 +192,7 @@ To enable pasting images, go to: <code>about:config</code> and set: <br />
 				<button
 					type="button"
 					onClick={() => pasteClipboardPromise()}
+					disabled={typeof(navigator.clipboard) === "undefined"}
 					>
 					{t("Paste clipboard")}: {t("anything")} via "promise"
 				</button>
@@ -191,10 +201,13 @@ To enable pasting images, go to: <code>about:config</code> and set: <br />
 				<button
 					type="button"
 					onClick={() => pasteClipboardAsync()}
+					disabled={typeof(navigator.clipboard) === "undefined"}
 					>
 					{t("Paste clipboard")}: {t("anything")} via "async"
 				</button>
 			</p>
+
+
 			<p id="clipboardTarget">
 			</p>
 			<div>

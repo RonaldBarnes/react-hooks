@@ -40,7 +40,7 @@ export default function HookUseFetch()
 			<input
 				type="number"
 				value={id}
-				onChange={ (e) => setId( id => e.target.value)}
+        onChange={ (e) => setId( id => parseInt(e.target.value))}
 				/>
 			{" "}
 			<button

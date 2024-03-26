@@ -3,7 +3,7 @@
  * Modified 2024-02-12 for handling Light & Dark modes without
  * FOIT (Flash Of Incorrect Theme).
  *
- * Requires all colours to be defined twice inside @media queries checking
+ * Requires some selectors and variables difined inside @media queries for
  * "(prefers-color-scheme: {light|dark})" ... AND
  * again outside the @media queries.
  *
@@ -15,6 +15,8 @@
  * I don't recall ever writing selectors this way before, what was I thinking?
  *
  * Future PR will be to give this a re-factor.
+ *
+ * FIXED! 2024-03-25
  */
 
 /*
@@ -24,13 +26,6 @@ html
 	}
 */
 
-#root {
-	box-sizing: border-box;
-	font-size: 16px;
-	}
-#root.darkModeTheme {
-	--box-shadow-color: grey;
-	}
 body, input, textarea, button, select
 	{
 	box-sizing: border-box;
@@ -38,11 +33,15 @@ body, input, textarea, button, select
 	padding: 0;
 
 	--header-height: 100px;
-	--sidebar-width: clamp(200px, max-content, 300px);
-	--color: black;
-	--background-color: whitesmoke;
+/*  --sidebar-width: clamp(200px, max-content, 300px); */
+  --sidebar-width: clamp(220px, 25vw, 290px);
+  --colorLight: black;
+  --colorDark: whitesmoke;
+  --bg-color-light: whitesmoke;
+  --bg-color-dark: #333;
 
-	--box-shadow-color: black;
+  --box-shadow-color-light: black;
+  --box-shadow-color-dark: gray;
 
 	--button-background: lightgray;
 	--button-color: black;
@@ -51,9 +50,11 @@ body, input, textarea, button, select
 
 	--link: blue;
 	--visited: purple;
+  --active: yellow;
 	/**
 	 * By using alpha, the transparency enables body to bleed through
 	 * giving light and dark theme effects with one selector:
+   * both -light and -dark therefore have same value:
 	--sidebar-background-color-light: #cfefdf;
 	--sidebar-background-color-dark: #365646;
 	 */
@@ -62,8 +63,20 @@ body, input, textarea, button, select
 	--blockquote-bg-color: hsla(50, 50%, 50%, 0.5);
 	--header-color: whitesmoke;
 	--header-bg-color: #333;
+  --todoItemDark: whitesmoke;
+  --todoItemLight: black;
+  --todoItemCompleted: gray;
 	transition: background-color 500ms;
 	}
+
+input
+  {
+  padding-inline: 0.5rem;
+  }
+textarea
+  {
+  padding: 0.5rem;
+  }
 
 p
 	{
@@ -95,20 +108,31 @@ button:active {
 button:focus {
 	outline: 2px solid cornflowerblue;
 	}
+button:disabled
+  {
+  opacity: 0.5;
+  color: black;
+  background-color: gray;
+  }
+
 button, input, textarea {
 	font-size: 1.5rem;
 	border-radius: 5px;
 	background-color: var(--button-background);
 	color: var(--button-color);
 	}
-/*
+
 a {
 	color: var(--link);
 	}
 a:visited {
 	color: var(--visited);
 	}
-*/
+a:active
+  {
+  color: var(--active, white);
+  }
+
 input[type="checkbox"]
 	{
 	width: 2rem;
@@ -171,10 +195,6 @@ h4
 	color: var(--header-color);
 	background-color: var(--header-bg-color);
 	box-shadow: 0px 0px 25px 5px var(--box-shadow-color);
-
-	position: sticky;
-	top: 0;
-	z-index: 10;
 
 	grid-area: header;
 	display: grid;
@@ -246,7 +266,7 @@ img.flag
 	color: var(--header-bg-color);
 	/* outline: 1px solid var(--header-bg-color); */
 	transition: all 250ms;
- /* ease-in-out; */
+  /* ease-in-out; */
 	}
 
 
@@ -284,8 +304,10 @@ img.flag
 	grid-area: sidebar;
 	padding-bottom: 1rem;
 	overflow: scroll;
-	/* width: var(--sidebar-width); */
-	width: clamp(15vw, 17vw, 22vw);
+  width: var(--sidebar-width);
+/*  width: clamp(15vw, 17vw, 22vw);
+  width: clamp(220px, 20vw, 270px);
+*/
 	transition: ease-in-out 300ms width;
 	}
 .sidebar > ul {
@@ -334,10 +356,6 @@ img.flag
 	font-size: 2rem;
 	}
 
-input, textarea {
-	font-size: 1.5rem;
-	}
-
 footer {
 	grid-area: footer;
 	text-align: center;
@@ -359,7 +377,7 @@ footer {
 	box-shadow: 1px 1px 20px 0px var(--box-shadow-color);
 	white-space: pre;
 	display: block;
-	max-width: 100dvw;	
+  max-width: 100dvw;
 	overflow: scroll;
 	}
 
@@ -392,12 +410,6 @@ blockquote {
 	}
 blockquote h3 {
 	margin-top: 0;
-	}
-
-
-/* :has(li):has(.active), */
-ul > li > a.active {
-	background-color: hsla(150, 50%, 50%, 0.5);
 	}
 
 
@@ -465,15 +477,17 @@ div.todos {
 	}
 .todoItem {
 	display: inline-block;
-	color: black;
 	padding: 0px 1rem;
 	margin-right: 1rem;
 	border-radius: 5px;
 	align-self: center;
 	justify-self: left;
+	color: var(--todoItem);
 	}
-.todoItemCompleted {
-	color: grey;
+.todoItemCompleted
+	{
+	color: var(--todoItemCompleted);
+	text-decoration-line: line-through;
 	}
 
 
@@ -496,44 +510,19 @@ div.todos {
  * is set to prefer dark theme:
  */
 @media ("(prefers-color-scheme: dark)")
-	{
-	body,
-	body * textarea,
-	body * input,
-	body * button,
-	body * select,
-	body * input[type="checkbox"]
-		{
-		--color: whitesmoke;
-		--background-color: #333;
-		--box-shadow-color: grey;
-		background-color: var(--background-color);
-		color: var(--color);
-		}
-
-	body * a {
-		color: orange;
-		}
-	 * a:visited {
-		color: red;
-		}
-	.App-header {
-		--box-shadow-color: grey;
-		}
-	blockquote {
-		--box-shadow-color: grey;
-		}
-	body * .todoItem {
-		color: whitesmoke;
-		}
-	body * .todoItemCompleted {
-		color: grey;
-		}
-	.sidebar, .sidebar-menu
-		{
-		background-color: var(--sidebar-background-color-dark);
-		}
-	}	/* end @media prefers-color-scheme: dark */
+{
+  body
+    {
+    color-scheme: dark;
+    --box-shadow-color: var(--box-shadow-color-dark);
+    --link: orange;
+    --visited: red;
+    --todoItem: var(--todoItemDark, whitesmoke);
+    --todoItemCompleted: gray;
+    background-color: var(--bg-color-dark);
+    color: var(--colorDark);
+    }
+  }	/* end @media prefers-color-scheme: dark */
 
 
 
@@ -543,65 +532,21 @@ div.todos {
 /**
  * Repeat @media selectors, allows JS to add or remove class(es):
  */
-body.darkModeTheme,
-body.darkModeTheme * textarea,
-body.darkModeTheme * input,
-body.darkModeTheme * button,
-body.darkModeTheme * select,
-body.darkModeTheme * input[type="checkbox"]
-	{
-	--color: whitesmoke;
-	--background-color: #333;
-	--box-shadow-color: grey;
-	background-color: var(--background-color);
-	color: var(--color);
-	}
-body.darkModeTheme * button:disabled,
-body.lightModeTheme * button:disabled
+body.darkModeTheme
   {
-  opacity: 0.75;
-  background-color: lightgray;
+  color-scheme: dark;
+  --box-shadow-color: var(--box-shadow-color-dark);
+  --link: orange;
+  --visited: red;
+  --todoItem: var(--todoItemDark, whitesmoke);
+  --todoItemCompleted: gray;
+  background-color: var(--bg-color-dark);
+  color: var(--colorDark);
   }
-body.darkModeTheme * a {
-	color: orange;
-	}
-.darkModeTheme * a:visited {
-	color: red;
-	}
-.App-header.darkModeTheme {
-	--box-shadow-color: grey;
-	}
-blockquote.darkModeTheme {
-	--box-shadow-color: grey;
-	}
-body.darkModeTheme * .todoItem {
-	color: whitesmoke;
-	}
-body.darkModeTheme * .todoItemCompleted {
-	color: grey;
-	}
-.sidebar, .sidebar-menu
-	{
-	background-color: var(--sidebar-background-color-dark);
-	}
+
 /**
  * End DARK THEME selectors
  */
-
-
-/*
-	Had to give the button ID for enough specificity
-	to get the useImperativeHandle page's Open button
-	to look disabled properly.
-	Kinda surprised, being at the end of the CSS file,
-	expected being last to "win"...
-*/
-button:disabled, *:disabled, #btnOpen:disabled
-	{
-	background-color: gray;
-	color: lightgray;
-	}
-
 
 
 
@@ -612,85 +557,31 @@ button:disabled, *:disabled, #btnOpen:disabled
  * is set to prefer light theme:
  */
 @media ("(prefers-color-scheme: light)")
-	{
-	body.lightModeTheme,
-	body.lightModeTheme * textarea,
-	body.lightModeTheme * input,
-	body.lightModeTheme * button,
-	body.lightModeTheme * select,
-	body.lightModeTheme * input[type="checkbox"]
-		{
-		color: var(--color);
-		background-color: var(--background-color);
-		box-shadow: var(--box-shadow-color);
-		--color: whitesmoke;
-		--background-color: #333;
-		--box-shadow-color: grey;
-		}
-
-	a.lightModeTheme {
-		color: var(--link);
-		}
-	body.lightModeTheme * a:visited
-		{
-		color: var(--visited);
-		color: darkgreen;
-		}
-	.App-header {
-		--box-shadow-color: grey;
-		}
-	blockquote.lightModeTheme {
-		--box-shadow-color: grey;
-		}
-	body * .todoItem {
-		color: whitesmoke;
-		}
-	body * .todoItemCompleted {
-		color: grey;
-		}
-	.sidebar, .sidebar-menu
-		{
-		background-color: var(--sidebar-background-color-light);
-		}
-	}	/* end @media prefers-color-scheme: light */
+  {
+  body.lightModeTheme
+    {
+    color-scheme: light;
+    color: var(--colorLight);
+    background-color: var(--bg-color-light);
+    --background-color: #333;
+    --box-shadow-color: var(--box-shadow-color-light);
+    --link: blue;
+    --visited: purple;
+    --todoItem: var(--todoItemLight, black);
+    --todoItemCompleted: gray;
+    }
+  }	/* end @media prefers-color-scheme: light */
 
 
 
-body.lightModeTheme,
-body.lightModeTheme * textarea,
-body.lightModeTheme * input,
-body.lightModeTheme * button,
-body.lightModeTheme * select,
-body.lightModeTheme * input[type="checkbox"]
-	{
-	--color: #333;
-	--background-color: whitesmoke;
-	--box-shadow-color: grey;
-	color: var(--color);
-	background-color: var(--background-color);
-	box-shadow: var(--box-shadow-color);
-	}
-
-body.lightModeTheme * a {
-	color: var(--link);
-	}
-.lightModeTheme * a:visited {
-	color: var(--visited);
-	}
-
-.App-header {
-	--box-shadow-color: grey;
-	}
-blockquote.lightModeTheme {
-	--box-shadow-color: grey;
-	}
-body * .todoItem {
-	color: whitesmoke;
-	}
-body * .todoItemCompleted {
-	color: grey;
-	}
-.sidebar, .sidebar-menu
-	{
-	background-color: var(--sidebar-background-color-light);
-	}
+body.lightModeTheme
+  {
+  color-scheme: light;
+  --box-shadow-color: var(--box-shadow-color-light);
+  --link: blue;
+  --visited: purple;
+  --todoItem: var(--todoItemLight, black);
+  --todoItemCompleted: gray;
+  color: var(--colorLight);
+  background-color: var(--bg-color-light);
+  }

@@ -153,11 +153,10 @@ To enable pasting images, go to: <code>about:config</code> and set: <br />
 
 			<hr />
 
-			{(typeof(navigator.clipboard) === "undefined")
-				&& <h2>Requires https</h2>
-				|| <>
-				<h1>works</h1>
-</>}
+      {(typeof(navigator.clipboard) === "undefined")
+        && <h2>Requires https</h2>
+        || <>
+          </>}
 
 			<p>
 				<label htmlFor="input">

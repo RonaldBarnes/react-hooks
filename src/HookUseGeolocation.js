@@ -121,6 +121,10 @@ cat privkey.pem cert.pem > server.pem
 				<GeoDataList data={data} />
 				<OptionsList options={options} />
 
+        {(typeof(navigator.clipboard) === "undefined")
+          && <h2>Requires https</h2>
+          || <>
+            </>}
 
 				<label htmlFor="checkbox">Constant Updates {" "}</label>
 				<input
@@ -128,11 +132,13 @@ cat privkey.pem cert.pem > server.pem
 					checked={addListener}
 					id="checkbox"
 					onChange={ () => setAddListener( f => !f)}
+          disabled={typeof(navigator.clipboard) === "undefined"}
 					/>
 				<p>
 					<button onClick={() =>
 						copyTextToClipboard(document.querySelector("#geoLocationStats").innerText)
 						}
+            disabled={typeof(navigator.clipboard) === "undefined"}
 						>
 						{t("Copy to Clipboard")}
 					</button>

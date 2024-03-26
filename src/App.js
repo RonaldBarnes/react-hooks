@@ -126,6 +126,7 @@ const App = function()
 
   // Capture settings from package.json's `build` script for deployment to
   // some path in the DocumentRoot of another web server:
+  // Default (dev mode) is "/" but build mode is, i.e. "/react/react-hooks/"
   const basePath = process.env.REACT_APP_RELATIVE_PATH || "";
 
 

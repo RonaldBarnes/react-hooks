@@ -27,7 +27,6 @@ export default function HookUseTranslation()
 
   const { basePath } = useContext(contextAppSettings);
 
-
   useEffectOnce( () => {
 		// Scroll to top after a delay for autoFocus:
 		setTimeout( () =>
@@ -92,7 +91,7 @@ export * as zh from "./zh.json";
 					onClick={() => setLanguage("en")}
 					>
           {t("English")} {" "}
-          <img src={ basePath + "/images/canada.png" }
+          <img src={ basePath + "images/canada.png" }
             alt="Canada flag"
             style={{verticalAlign:"bottom"}}
             />
@@ -102,7 +101,7 @@ export * as zh from "./zh.json";
 					onClick={() => setLanguage("hk")}
 					>
           {t("Cantonese")} {" "}
-          <img src={ basePath + "/images/hong-kong.png" }
+          <img src={ basePath + "images/hong-kong.png" }
 						alt="Hong Kong flag"
 						style={{verticalAlign:"bottom"}}
 						/>

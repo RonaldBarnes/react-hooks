@@ -83,7 +83,7 @@ export default function HookUseDebugValue()
 			<h4>The image below shows the Component tab of the dev tools</h4>
 			<p>
         <img
-          src={ basePath + "/images/Screenshot_useDebugValue.png"}
+          src={ basePath + "images/Screenshot_useDebugValue.png"}
 					alt="Hook useDebugValue screenshot"
 					className="screenshot"
 					/>

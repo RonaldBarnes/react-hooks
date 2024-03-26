@@ -7,9 +7,9 @@
 // export * as zh from "./zh.json";
 
 export const flags = {
-		"en": "/images/canada.png",
+		"en": "images/canada.png",
 		// "en": "/images/united-kingdom.png",
-		"hk": "/images/hong-kong.png"
+		"hk": "images/hong-kong.png"
 	}
 
 

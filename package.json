@@ -4,6 +4,8 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.10",
+    "@babel/plugin-transform-private-property-in-object": "^7.23.4",
     "babel": "^6.23.0",
     "eslint": "^8.57.0",
     "lodash": "^4.17.21",
@@ -22,7 +24,7 @@
   },
   "scripts": {
     "start": "PORT=3001 react-scripts start",
-    "build": "REACT_APP_RELATIVE_PATH=/react/react-hooks react-scripts build",
+    "build": "REACT_APP_RELATIVE_PATH=/react/react-hooks/ react-scripts build",
     "test": "PORT=3001 react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

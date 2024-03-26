@@ -1,0 +1,41 @@
+
+
+https://www.npmjs.com/package/@babel/plugin-proposal-private-property-in-object
+
+npm run build was throwing warnings about:
+
+@babel/plugin-proposal-private-property-in-object
+
+his package has been deprecated
+
+Author message:
+This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-property-in-object instead.
+
+
+I installed it, (but it's deprecated), using this URL:
+
+https://stackoverflow.com/questions/76435306/babel-preset-react-app-is-importing-the-babel-plugin-proposal-private-propert
+
+npm install --save-dev @babel/plugin-proposal-private-property-in-object
+
+
+
+
+WARNING MESSAGE:
+
+Creating an optimized production build...
+One of your dependencies, babel-preset-react-app, is importing the
+"@babel/plugin-proposal-private-property-in-object" package without
+declaring it in its dependencies. This is currently working because
+"@babel/plugin-proposal-private-property-in-object" is already in your
+node_modules folder for unrelated reasons, but it may break at any time.
+
+babel-preset-react-app is part of the create-react-app project, which
+is not maintianed anymore. It is thus unlikely that this bug will
+ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
+your devDependencies to work around this error. This will make this message
+go away.
+
+Compiled successfully.
+
+

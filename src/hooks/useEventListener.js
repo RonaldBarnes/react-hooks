@@ -28,6 +28,7 @@ export default function useEventListener(
 
 		const handler = e => callbackRef.current(e);
 		// Default element is window:
+            console.count("---Jamal: Event listener added!")
 		element.addEventListener(eventType, handler);
 
 		// Cleanup previous listeners:

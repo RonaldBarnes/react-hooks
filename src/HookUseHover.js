@@ -1,5 +1,5 @@
 
-import React, { useRef, useEffect, useCallback, useContext, useState } from "react";
+import React, { useEffect, useCallback, useContext, useState } from "react";
 
 import useHover from "./hooks/useHover";
 import useSourceCode from "./hooks/useSourceCode";
@@ -11,12 +11,10 @@ import PageTitle from "./PageTitle";
 export default function HookUseHover()
 {
     const [domNode, setDomNode] = useState(null);
-    const elementRef = useRef();
-    // const elementRef = useCallback(node => {
-    //     setDomNode(node)
-    // });
-    const { hovered, setHovered } = useHover(elementRef);
-    //const { hovered, setHovered } = useHover(domNode);
+    const elementRef = useCallback(node => {
+        setDomNode(node)
+    });
+    const { hovered, setHovered } = useHover(domNode);
 
     const { t } = useContext(contextTranslate);
 

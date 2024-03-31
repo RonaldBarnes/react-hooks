@@ -84,15 +84,26 @@ export default function HookUseHover()
 function Code()
 	{
 	const code = `
-import React, { useRef } from "react";
+
+import React, { useEffect, useCallback, useContext, useState } from "react";
 
 import useHover from "./hooks/useHover";
+import useSourceCode from "./hooks/useSourceCode";
+
+import { contextTranslate } from "./App.js";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseHover()
-	{
-	const elementRef = useRef();
-	const hovered = useHover(elementRef);
+  {
+  const [domNode, setDomNode] = useState(null);
+  const elementRef = useCallback(node => {
+    setDomNode(node)
+    });
+  const { hovered, setHovered } = useHover(domNode);
+
+  const { t } = useContext(contextTranslate);
+
 
 	return (
 		<div className="hooks">
@@ -117,6 +128,10 @@ export default function HookUseHover()
 
 
 
+/**
+ * useHover.js
+ */
+
 import { useState } from "react";
 
 import useEventListener from "./useEventListener";
@@ -125,10 +140,10 @@ export default function useHover(elementRef)
 	{
 	const [hovered, setHovered] = useState(false);
 
-	useEventListener("mouseover", () => setHovered(true), elementRef.current);
-	useEventListener("mouseout", () => setHovered(false), elementRef.current);
+  useEventListener("mouseover", () => setHovered(true), elementRef);
+  useEventListener("mouseout", () => setHovered(false), elementRef);
 
-	return hovered;
+  return { hovered, setHovered };
 	}
 `;
 	const output = useSourceCode({code});

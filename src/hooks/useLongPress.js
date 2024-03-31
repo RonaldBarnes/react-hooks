@@ -8,7 +8,7 @@ import useEffectOnce from "./useEffectOnce";
 
 export default function useLongPress(
 		ref,
-		callback = () => alert("FUCKING DEFAULT CALLBACK"),
+    callback = () => alert("DEFAULT CALLBACK - should not execute"),
 		// Dafuq is this notation?
 		{ delay = 250 } = {})
 	{

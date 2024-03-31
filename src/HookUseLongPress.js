@@ -10,7 +10,7 @@ export default function HookUseLongPress()
 	{
   const [domNode, setDomNode] = useState(null);
   // Jamal's trick of using a `callback ref` - pass a function to
-  // ref= in JSX below, instead of a ref.
+  // ref= in JSX below, instead of a ref object.
   // This fixes navigating away from page, back again, and getting listener
   // bound to `window` instead of desired DOM node:
   const elementRef = useCallback( node => {
@@ -74,16 +74,27 @@ export default function HookUseLongPress()
 function Code()
 	{
 	const code = `
+import React, { useEffect, useCallback, useState } from "react";
 import useLongPress from "./hooks/useLongPress";
+
+import useSourceCode from "./hooks/useSourceCode";
+import PageTitle from "./PageTitle";
 
 
 export default function HookUseLongPress()
 	{
-	const elementRef = useRef();
+  const [domNode, setDomNode] = useState(null);
+  // Jamal's trick of using a \`callback ref\` - pass a function to
+  // ref= in JSX below, instead of a ref object.
+  // This fixes navigating away from page, back again, and getting listener
+  // bound to \`window\` instead of desired DOM node:
+  const elementRef = useCallback( node => {
+    setDomNode( prev => node);
+    });
 	const PRESS_TIME_LENGTH = 1500;
 
 	useLongPress(
-		elementRef,
+    domNode,  // elementRef,
 		() => alert("Long press from HookUseLongPress"),
 		{delay: PRESS_TIME_LENGTH},
 		);
@@ -121,9 +132,12 @@ export default function HookUseLongPress()
 
 
 
-
+/**
+ * useLongPress.js
+ */
 
 import useEventListener from "./useEventListener";
+import useTimeout from "./useTimeout";
 import useEffectOnce from "./useEffectOnce";
 
 // https://courses.webdevsimplified.com/view/courses/react-hooks-simplified/1327246-custom-hooks/4121589-20-custom-hooks-26-30-useonlinestatus-userendercount-usedebuginformation-usehover-uselongpre
@@ -131,7 +145,7 @@ import useEffectOnce from "./useEffectOnce";
 
 export default function useLongPress(
 		ref,
-		callback = () => alert("FUCKING DEFAULT CALLBACK"),
+    callback = () => alert("DEFAULT CALLBACK - should not execute"),
 		// Dafuq is this notation?
 		{ delay = 250 } = {})
 	{
@@ -147,14 +161,14 @@ export default function useLongPress(
 	useEffectOnce(clear);
 
 	// Reset timer to zero at beginning of either event:
-	useEventListener("mousedown", restart, ref.current);
-	useEventListener("touchstart", restart, ref.current);
+  useEventListener("mousedown", restart, ref);
+  useEventListener("touchstart", restart, ref);
 
 	// If these events happen before the delay, clear the timer since
 	// we only want the callback to run if these happen AFTER the delay:
-	useEventListener("mouseup", clear, ref.current);
-	useEventListener("mouseleave", clear, ref.current);
-	useEventListener("touchend", clear, ref.current);
+  useEventListener("mouseup", clear, ref);
+  useEventListener("mouseleave", clear, ref);
+  useEventListener("touchend", clear, ref);
 	}	// end function useLongPress
 
 

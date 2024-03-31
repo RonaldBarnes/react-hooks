@@ -1,5 +1,5 @@
 
-import React, { useRef, useEffect, useContext } from "react";
+import React, { useEffect, useCallback, useContext, useState } from "react";
 
 import useHover from "./hooks/useHover";
 import useSourceCode from "./hooks/useSourceCode";
@@ -9,11 +9,14 @@ import PageTitle from "./PageTitle";
 
 
 export default function HookUseHover()
-	{
-	const elementRef = useRef();
-  const { hovered, setHovered } = useHover(elementRef);
+{
+    const [domNode, setDomNode] = useState(null);
+    const elementRef = useCallback(node => {
+        setDomNode(node)
+    });
+    const { hovered, setHovered } = useHover(domNode);
 
-  const { t } = useContext(contextTranslate);
+    const { t } = useContext(contextTranslate);
 
 
 	// // Scroll to top after a delay for autoFocus:

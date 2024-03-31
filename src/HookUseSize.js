@@ -31,9 +31,9 @@ export default function HookUseSize()
 				Resize text area, see listener update the measurements.
 				Makes use of <code>ResizeObserver</code> and
 				<code>observer.observe()</code>...
-			<hr />
-
 			</p>
+      <hr />
+
 			<p>
 				<textarea ref={textRef} autoFocus></textarea>
 			</p>

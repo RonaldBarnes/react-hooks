@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 
 import useLongPress from "./hooks/useLongPress";
 import useSourceCode from "./hooks/useSourceCode";
@@ -8,7 +8,14 @@ import PageTitle from "./PageTitle";
 
 export default function HookUseLongPress()
 	{
-	const elementRef = useRef();
+  const [domNode, setDomNode] = useState(null);
+  // Jamal's trick of using a `callback ref` - pass a function to
+  // ref= in JSX below, instead of a ref.
+  // This fixes navigating away from page, back again, and getting listener
+  // bound to `window` instead of desired DOM node:
+  const elementRef = useCallback( node => {
+    setDomNode( prev => node);
+    });
 	const PRESS_TIME_LENGTH = 1500;
 
 
@@ -21,7 +28,7 @@ export default function HookUseLongPress()
     }, [])
 
 	useLongPress(
-		elementRef,
+    domNode,  //    elementRef,
 		() => alert("Long press from HookUseLongPress"),
 		{delay: PRESS_TIME_LENGTH},
 		);

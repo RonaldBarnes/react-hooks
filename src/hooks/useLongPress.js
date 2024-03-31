@@ -31,12 +31,12 @@ export default function useLongPress(
 	useEffectOnce(clear);
 
 	// Reset timer to zero at beginning of either event:
-	useEventListener("mousedown", restart, ref.current);
-	useEventListener("touchstart", restart, ref.current);
+  useEventListener("mousedown", restart, ref);
+  useEventListener("touchstart", restart, ref);
 
 	// If these events happen before the delay, clear the timer since
 	// we only want the callback to run if these happen AFTER the delay:
-	useEventListener("mouseup", clear, ref.current);
-	useEventListener("mouseleave", clear, ref.current);
-	useEventListener("touchend", clear, ref.current);
+  useEventListener("mouseup", clear, ref);
+  useEventListener("mouseleave", clear, ref);
+  useEventListener("touchend", clear, ref);
 	}	// end function useLongPress
